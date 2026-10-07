@@ -9,6 +9,7 @@ October 7, 2026. Verification for the initial public release.
 | `npm test` | Exit 0, 18 tests passed |
 | `uv run --python 3.12 --with pytest --with playwright==1.63.0 pytest -q tests` | Exit 0, 123 tests passed, no skips |
 | Fresh dependency cache and fresh Chromium headless shell, same Python suite | Exit 0, 123 tests passed |
+| Fresh release checkout, Node and Python suites | Exit 0, 18 Node and 123 Python tests passed |
 | Ruff, source/tests/templates/demo and example hooks | Exit 0, both normal and isolated default configuration |
 | Skill-creator manifest validator | Exit 0, skill valid |
 | Markdown links, model/report equality and browser-record hashes | Passed; records match the exact current models and runner bytes |
@@ -49,6 +50,8 @@ The initial parallel trigger test scored 4/6 while multiple identical temporary 
 The initial four task runs passed their four assertions. The baseline has the same README and examples, so this establishes usability, not a benefit caused by the entry skill. Review found a paraphrased summary described as exact output and an overly broad completeness phrase. The original outputs and grading remain preserved. A release revision clarified model-relative completeness, summary labeling and the requirement for recorded verification evidence.
 
 The follow-up compares the revised and prior entry skills on the same two tasks with six assertions each. Claude Code captured its tool events directly. The first Codex pair had incomplete process capture and was retained outside the scored comparison; the corrected pair retains full tool-call/result evidence and confirms both screenshot inspections. Reports distinguish observed checks from unchecked capability and implementation claims. The standard skill-creator review viewer contains the outputs, grades, timing and limitations. This small comparison does not establish a general quality or performance gain.
+
+All four scored follow-up outputs passed five of six assertions. The remaining failure is explicit summary labeling: agents paraphrased the reports without labeling that prose as a summary. The successful tool records support the verification claims in the corrected evidence runs. This wording limitation remains visible; the criterion was not weakened to turn it into a pass.
 
 Each task ran once per condition, with different hosts for different tasks. Timings and token totals describe these runs only; they do not establish a general performance gain. A later evaluation should test omitted events, stale hashes, misleading success text and flaky retries rather than rely only on the supplied walkthrough.
 
