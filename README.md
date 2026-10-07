@@ -6,7 +6,7 @@ An existing customer wants more service hours. The design handles a new contract
 
 ![Before: an existing customer has no add-hours path. After: the design specifies checkout and coordinated updates. Implementation testing is separate.](visuals/before-after.png)
 
-**Release candidate:** both Jev providers have executed the broken and corrected browser example. The results preserve the exact checks, screenshots and untested paths. See [verification](docs/verification.md) for completed checks and remaining release work.
+Both Jev providers have executed the broken and corrected browser example. The results preserve the exact checks, screenshots and untested paths. See [verification](docs/verification.md) for the evidence and known limits.
 
 | Start here | You get | You need |
 | --- | --- | --- |
@@ -17,7 +17,8 @@ An existing customer wants more service hours. The design handles a new contract
 ## Give this to your agent
 
 ```text
-Read SKILL.md in this repository and guide me through setup.
+Open https://github.com/aiwriter28/state-gap-jev and read SKILL.md.
+Guide me through setup using the repository, cloning it locally when needed.
 Start with the example so I understand the result, then help me map my workflow.
 Check what my agent environment can run and handle the reversible setup for me.
 For live Jev testing, offer OpenRouter or TypeSafe directly and reuse my choice.
@@ -48,3 +49,5 @@ The example is fictional. Private project adapters and credentials are not bundl
 This package shares the State Gap modeling method with the separate State Gap Mapper web application. Your agent works directly from this repository; no web-app account is required.
 
 [Observed browser results](examples/add-hours/README.md#recorded-browser-evidence) show the exact limits of a pass. [Security review](docs/security.md) documents executable hooks, provider data flow and the reviewed scanner findings.
+
+Licensed under [MIT](LICENSE), with [third-party notices](THIRD_PARTY_NOTICES.md).

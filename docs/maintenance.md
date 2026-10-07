@@ -19,4 +19,4 @@ Review scope, correctness, safety, accessibility, maintainability and test quali
 
 Use the current Anthropic skill-creator workflow for meaningful behavior evaluations with baseline comparisons and a human-readable review viewer. Test setup from clean environments for Claude Code and Codex. A fresh chat on the same configured machine alone does not prove portability.
 
-Publication remains pending license/destination verification and the acceptance checks in [verification](verification.md). Nothing in the draft claims a released GitHub URL.
+The public source is [aiwriter28/state-gap-jev](https://github.com/aiwriter28/state-gap-jev), licensed MIT with third-party notices retained. Release verification and remaining limitations are recorded in [verification](verification.md). Publish only the reviewed package files; keep private runs and local evaluation workspaces separate.

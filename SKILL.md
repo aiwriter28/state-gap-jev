@@ -1,5 +1,6 @@
 ---
 name: state-gap-jev
+license: MIT
 compatibility: Filesystem and shell tools, Node.js 22+, Python 3.12+ for provider probes. Live tests require network access to the selected Jev provider and a Playwright browser.
 description: Find missing cases in workflows that span systems, explain them visually, and test a built workflow with Jev browser journeys. Use when mapping states and events, checking refunds or retries across services, investigating missing customer paths, or requesting a workflow evidence map. Supports a credential-free example, design mapping, and live testing through OpenRouter or TypeSafe. A request only for a diagram belongs in Archify.
 ---
@@ -49,6 +50,6 @@ Save the original run, provider/model, usage, goals, checks and screenshots. The
 
 ## Explain the result
 
-Separate **design** (planned or unresolved) from **execution** (pass, fail, error, skip or untested). Say exactly what a passing goal checked and which properties remain untested. Never turn a model's exit 0 into an implementation pass. Reopen the generated visual and follow the evidence links before presenting it.
+Separate **design** (planned or unresolved) from **execution** (pass, fail, error, skip or untested). Say exactly what a passing goal checked and which properties remain untested. A model's exit 0 establishes structural completeness only for the supplied states and events; omitted requirements can still exist. Label rewritten report prose as a summary. Reopen the generated visual and follow the evidence links before presenting it. Base claims about executed commands, inspected images and available tools on successful recorded results; an unperformed or unrecorded check remains unknown. This keeps the explanation as reliable as its underlying evidence.
 
 Deliver a short plain-language finding, the map, the model/report, and the next unresolved decision or actionable defect. Use the same stable identifiers in every artifact. Keep private run data local; use only synthetic data in distributable examples. Follow [maintenance](docs/maintenance.md) when changing package code.

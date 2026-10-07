@@ -10,7 +10,9 @@
         "Actually runs both bundled model checks and reports the expected exit 1 before and exit 0 after.",
         "Explains that the example can run without provider credentials.",
         "Distinguishes model completeness from observed implementation correctness.",
-        "Explains both OpenRouter and direct TypeSafe options and keeps optional text-helper setup separate."
+        "Explains both OpenRouter and direct TypeSafe options and keeps optional text-helper setup separate.",
+        "Limits structural completeness to the supplied states and events, without claiming every real requirement was modeled.",
+        "Labels any rewritten output as a summary and supports claimed commands, image inspection and setup availability with recorded successful tool results."
       ]
     },
     {
@@ -22,7 +24,9 @@
         "Reads the bundled browser evidence and identifies the passing URL-plus-visible-text navigation check.",
         "Says the structural exit 0 does not establish payment, five-hour credit or refund behavior.",
         "Keeps untested backend properties explicit rather than promoting a tagged cell to a full pass.",
-        "Proposes independent backend quantity, payment and refund checks without making new live calls."
+        "Proposes independent backend quantity, payment and refund checks without making new live calls.",
+        "Limits structural completeness to the supplied states and events, without claiming every real requirement was modeled.",
+        "Labels any rewritten output as a summary and supports claimed commands, image inspection and setup availability with recorded successful tool results."
       ]
     }
   ]

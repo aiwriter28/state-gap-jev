@@ -8,7 +8,14 @@ Give your agent the repository and the request in the README. It should inspect 
 | Map my workflow | Coding agent, shell/files, Node.js 22+ | Model, gaps, omission review, visual |
 | Test my implementation | Above, Python 3.12+, uv, Chromium, a Jev key | Browser observations and evidence |
 
-Clone or download the repository into a normal working directory. You can use `SKILL.md` directly without installing it globally. A host that supports skills can install this directory through its normal skill installer, after its required security review. All dependencies and references belong to this package; no personal skill directory is required.
+Clone [the repository](https://github.com/aiwriter28/state-gap-jev) or download its ZIP into a normal working directory.
+
+```sh
+git clone https://github.com/aiwriter28/state-gap-jev.git
+cd state-gap-jev
+```
+
+You can use `SKILL.md` directly without installing it globally. A host that supports skills can install this directory through its normal skill installer, after its required security review. All dependencies and references belong to this package; no personal skill directory is required.
 
 The agent should check `node --version`, then run the example. For browser mode check `uv --version`, use the pinned dependencies declared in the walker, and install the matching Playwright Chromium. Follow [journeys](journeys.md) for exact commands. Explain missing tools and perform authorized installation. Do not hide installation failures or claim compatibility without executing the example.
 

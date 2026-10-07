@@ -1,6 +1,6 @@
 # Third-party notices
 
-The deterministic engine is adapted from the author's existing State Gap tooling. New package files and modifications are covered by the repository license when released.
+The deterministic engine is adapted from the author's existing State Gap tooling. New package files and modifications are covered by the repository MIT license.
 
 The generated visual HTML contains Archify runtime code, licensed MIT by tt-a1i and based on Cocoon-AI/architecture-diagram-generator. The full MIT notices are retained in `docs/licenses/archify.txt`. Embedded JetBrains Mono is under SIL Open Font License 1.1; its license travels inside generated HTML and is also retained in `docs/licenses/JetBrainsMono-OFL.txt`. No third-party brand marks are used in these diagrams.
 
