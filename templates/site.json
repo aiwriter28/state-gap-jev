@@ -1,0 +1,15 @@
+{
+  "name": "Your site",
+  "live_hosts": ["yoursite.com", "www.yoursite.com"],
+  "deployment_url_pattern": "^https://yourproject-[a-z0-9]+-yourteam\\.vercel\\.app$",
+  "protection_bypass": false,
+  "allow": [
+    {"origin": "https://fonts.googleapis.com"},
+    {"origin": "https://fonts.gstatic.com"}
+  ],
+  "steps": ["discover", "start", "help"],
+  "avoid": null,
+  "viewports": {"desktop": [1280, 800], "phone": [390, 844]},
+  "max_actions": 40,
+  "budget_usd": 1.0
+}

@@ -1,0 +1,158 @@
+{
+  "schema_version": 2,
+  "diagram_type": "workflow",
+  "meta": {
+    "title": "Find the missing workflow path",
+    "quality_profile": "showcase",
+    "animation": "none",
+    "visual_preset": "editorial",
+    "legend": {
+      "mode": "hidden"
+    },
+    "views": [
+      {
+        "id": "design",
+        "label": "Understand the design",
+        "focus": [
+          "spec",
+          "model",
+          "decision"
+        ],
+        "note": "Resolve missing decisions before treating the design as complete."
+      },
+      {
+        "id": "observe",
+        "label": "Check the implementation",
+        "focus": [
+          "goals",
+          "browser",
+          "evidence"
+        ],
+        "note": "A browser pass proves only the checks recorded for this run."
+      }
+    ]
+  },
+  "lanes": [
+    {
+      "id": "design",
+      "label": "MAP THE DESIGN"
+    },
+    {
+      "id": "observe",
+      "label": "TEST THE IMPLEMENTATION"
+    }
+  ],
+  "mainPath": [
+    "spec",
+    "model",
+    "decision"
+  ],
+  "nodes": [
+    {
+      "id": "spec",
+      "lane": "design",
+      "col": 0,
+      "type": "external",
+      "label": "Your workflow",
+      "sublabel": "Spec + decisions",
+      "width": 170,
+      "height": 90
+    },
+    {
+      "id": "model",
+      "lane": "design",
+      "col": 2,
+      "type": "backend",
+      "label": "Find gaps",
+      "sublabel": "States x events",
+      "width": 170,
+      "height": 90
+    },
+    {
+      "id": "decision",
+      "lane": "design",
+      "col": 5,
+      "type": "security",
+      "label": "Resolve each case",
+      "sublabel": "Owner + recovery",
+      "width": 170,
+      "height": 90
+    },
+    {
+      "id": "goals",
+      "lane": "observe",
+      "col": 0,
+      "type": "frontend",
+      "label": "Define goals",
+      "sublabel": "Independent checks",
+      "width": 170,
+      "height": 90
+    },
+    {
+      "id": "browser",
+      "lane": "observe",
+      "col": 2,
+      "type": "backend",
+      "label": "Jev explores",
+      "sublabel": "Chosen provider",
+      "width": 170,
+      "height": 90
+    },
+    {
+      "id": "evidence",
+      "lane": "observe",
+      "col": 5,
+      "type": "database",
+      "label": "Inspect results",
+      "sublabel": "Evidence + untested",
+      "width": 170,
+      "height": 90
+    }
+  ],
+  "edges": [
+    {
+      "from": "spec",
+      "to": "model",
+      "label": "extract"
+    },
+    {
+      "from": "model",
+      "to": "decision",
+      "label": "review"
+    },
+    {
+      "from": "decision",
+      "to": "goals",
+      "label": "translate",
+      "role": "return"
+    },
+    {
+      "from": "goals",
+      "to": "browser",
+      "label": "run"
+    },
+    {
+      "from": "browser",
+      "to": "evidence",
+      "label": "record"
+    }
+  ],
+  "cards": [
+    {
+      "dot": "amber",
+      "title": "Start without an API key",
+      "items": [
+        "Explore the synthetic example and map your design.",
+        "Unknown behavior remains an explicit gap."
+      ]
+    },
+    {
+      "dot": "cyan",
+      "title": "Connect the evidence",
+      "items": [
+        "OpenRouter or direct TypeSafe powers live Jev runs.",
+        "Archify shows the map; saved reports explain the result."
+      ]
+    }
+  ]
+}

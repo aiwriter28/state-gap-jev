@@ -1,0 +1,100 @@
+{
+  "id": "add-hours",
+  "step": "add_hours",
+  "viewport": "desktop",
+  "goal": "You already have an active service agreement. Find the option to add five service hours to that existing agreement and open its checkout. Do not buy another contract.",
+  "pass_check": {
+    "url": "/before/checkout.html$",
+    "text": [
+      "five service hours"
+    ]
+  },
+  "known": null,
+  "cells": [
+    "payment.ready.add_hours"
+  ],
+  "result": "fail",
+  "reason": "blocked",
+  "actions": 2,
+  "seconds": 2.7,
+  "jev_calls": 3,
+  "jev_usd": 0.000199878,
+  "jev_provider": "openrouter",
+  "jev_models": [
+    "typesafe/jev-1.13-20260917"
+  ],
+  "jev_usage": [
+    {
+      "provider": "openrouter",
+      "model": "typesafe/jev-1.13-20260917",
+      "cost_usd": 6.405e-05,
+      "input_tokens": 1525,
+      "output_tokens": 71,
+      "cost": 6.405e-05
+    },
+    {
+      "provider": "openrouter",
+      "model": "typesafe/jev-1.13-20260917",
+      "cost_usd": 6.6612e-05,
+      "input_tokens": 1586,
+      "output_tokens": 71,
+      "cost": 6.6612e-05
+    },
+    {
+      "provider": "openrouter",
+      "model": "typesafe/jev-1.13-20260917",
+      "cost_usd": 6.9216e-05,
+      "input_tokens": 1648,
+      "output_tokens": 71,
+      "cost": 6.9216e-05
+    }
+  ],
+  "text_calls": 0,
+  "steps": [
+    {
+      "step": 1,
+      "operation": null,
+      "action": "Not finished: the answer the goal asks for is not visible yet. Keep looking: scroll, open the menu, open a question, or try another page.",
+      "text": null,
+      "confidence": null,
+      "page_changed": null,
+      "url": "http://127.0.0.1:18765/before/"
+    },
+    {
+      "step": 2,
+      "operation": null,
+      "action": "Not finished: the answer the goal asks for is not visible yet. Keep looking: scroll, open the menu, open a question, or try another page.",
+      "text": null,
+      "confidence": null,
+      "page_changed": null,
+      "url": "http://127.0.0.1:18765/before/"
+    }
+  ],
+  "last_text": "SYNTHETIC EXAMPLE \u00b7 No purchases or accounts\nYou have an active agreement.\nYour account has two service hours remaining.\nNeed more time?\nChoose a service option.\nBuy a new service contract\nFixture build: add-hours-before-v1",
+  "events": [],
+  "urls": [
+    "http://127.0.0.1:18765/before/"
+  ],
+  "api": [],
+  "final_url": "http://127.0.0.1:18765/before/",
+  "decisions": [
+    {
+      "choice": "BLOCKED",
+      "confidence": 0.71,
+      "elapsed_ms": 507,
+      "page": "1205d3cd"
+    },
+    {
+      "choice": "BLOCKED",
+      "confidence": 0.51,
+      "elapsed_ms": 817,
+      "page": "1205d3cd"
+    },
+    {
+      "choice": "BLOCKED",
+      "confidence": 0.57,
+      "elapsed_ms": 1128,
+      "page": "1205d3cd"
+    }
+  ]
+}

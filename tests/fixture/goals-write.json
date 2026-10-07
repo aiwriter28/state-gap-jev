@@ -1,0 +1,26 @@
+[
+  {
+    "id": "signup-a",
+    "step": "signin",
+    "start": "/intake/",
+    "budget": 60,
+    "goal": "Create an account with email {email_a} and password {password_a}.",
+    "pass": {"api": "^200 .*action=signup"}
+  },
+  {
+    "id": "verify-a",
+    "step": "signin",
+    "after": "signup-a",
+    "start": "{verify_link_a}",
+    "goal": "Verify your email address, then sign in with {email_a} and {password_a}.",
+    "pass": {"text": ["Email verified"]}
+  },
+  {
+    "id": "pay-a",
+    "step": "pay",
+    "after": "verify-a",
+    "start": "{last_url}",
+    "goal": "Pay $195 with the test card 4242 4242 4242 4242.",
+    "pass": {"url": "/intake/\\?checkout=paid"}
+  }
+]

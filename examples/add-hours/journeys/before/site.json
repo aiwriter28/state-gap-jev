@@ -1,0 +1,12 @@
+{
+  "name": "Synthetic add-hours before",
+  "live_hosts": [],
+  "deployment_url_pattern": "^http://127\\.0\\.0\\.1:18765$",
+  "steps": [
+    "add_hours"
+  ],
+  "max_actions": 10,
+  "budget_usd": 0.05,
+  "model": "../../before.json",
+  "fixture_path": "/before/"
+}

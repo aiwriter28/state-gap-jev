@@ -1,0 +1,878 @@
+{
+  "systems": [
+    {
+      "name": "payment",
+      "region": "default"
+    },
+    {
+      "name": "fulfillment",
+      "region": "default"
+    },
+    {
+      "name": "marketing groups",
+      "region": "default"
+    },
+    {
+      "name": "campaign sends",
+      "region": "default"
+    },
+    {
+      "name": "calendar",
+      "region": "default"
+    },
+    {
+      "name": "reminder sequences",
+      "region": "default"
+    },
+    {
+      "name": "file sharing",
+      "region": "default"
+    },
+    {
+      "name": "CRM",
+      "none": true,
+      "reason": "No CRM participates in Run A."
+    },
+    {
+      "name": "workflow engine",
+      "region": "default"
+    }
+  ],
+  "events": [
+    {
+      "id": "quiz_submitted_with_marketing_consent",
+      "name": "Submit quiz with marketing consent"
+    },
+    {
+      "id": "quiz_submitted_without_marketing_consent",
+      "name": "Submit quiz without marketing consent"
+    },
+    {
+      "id": "full_series_checkout_completed",
+      "name": "Complete Stripe checkout for the full series"
+    },
+    {
+      "id": "paid_parent_fulfilled",
+      "name": "Fulfill paid parent"
+    },
+    {
+      "id": "repeated_checkout_event_received",
+      "name": "Receive repeated checkout event"
+    },
+    {
+      "id": "drop_in_checkout_refused",
+      "name": "Refuse Drop-In checkout"
+    },
+    {
+      "id": "sales_campaign_sent",
+      "name": "Send sales campaign"
+    },
+    {
+      "id": "two_day_reminder_sent",
+      "name": "Send two-day reminder"
+    },
+    {
+      "id": "one_day_reminder_sent",
+      "name": "Send one-day reminder"
+    },
+    {
+      "id": "unsubscribe_clicked",
+      "name": "Click unsubscribe"
+    },
+    {
+      "id": "paid_access_revoked",
+      "name": "Revoke paid access"
+    },
+    {
+      "id": "paid_order_email_replaced",
+      "name": "Replace paid order email"
+    },
+    {
+      "id": "cohort_closed",
+      "name": "Close cohort"
+    }
+  ],
+  "regions": [
+    {
+      "id": "default",
+      "name": "Run A",
+      "states": [
+        {
+          "id": "visitor",
+          "name": "Visitor",
+          "isInitial": true,
+          "isFinal": false
+        },
+        {
+          "id": "subscribed",
+          "name": "Subscribed",
+          "isInitial": false,
+          "isFinal": false
+        },
+        {
+          "id": "paid",
+          "name": "Paid",
+          "isInitial": false,
+          "isFinal": false
+        },
+        {
+          "id": "unsubscribed",
+          "name": "Unsubscribed",
+          "isInitial": false,
+          "isFinal": true
+        },
+        {
+          "id": "revoked",
+          "name": "Revoked",
+          "isInitial": false,
+          "isFinal": true
+        },
+        {
+          "id": "closed",
+          "name": "Closed",
+          "isInitial": false,
+          "isFinal": true
+        }
+      ],
+      "transitions": [
+        {
+          "from": "visitor",
+          "event": "quiz_submitted_with_marketing_consent",
+          "to": "subscribed"
+        },
+        {
+          "from": "visitor",
+          "event": "quiz_submitted_without_marketing_consent",
+          "to": "visitor"
+        },
+        {
+          "from": "visitor",
+          "event": "full_series_checkout_completed",
+          "to": "paid"
+        },
+        {
+          "from": "subscribed",
+          "event": "full_series_checkout_completed",
+          "to": "paid"
+        },
+        {
+          "from": "paid",
+          "event": "paid_parent_fulfilled",
+          "to": "paid"
+        },
+        {
+          "from": "paid",
+          "event": "repeated_checkout_event_received",
+          "to": "paid"
+        },
+        {
+          "from": "visitor",
+          "event": "drop_in_checkout_refused",
+          "to": "visitor"
+        },
+        {
+          "from": "subscribed",
+          "event": "drop_in_checkout_refused",
+          "to": "subscribed"
+        },
+        {
+          "from": "subscribed",
+          "event": "sales_campaign_sent",
+          "to": "subscribed"
+        },
+        {
+          "from": "subscribed",
+          "event": "two_day_reminder_sent",
+          "to": "subscribed"
+        },
+        {
+          "from": "subscribed",
+          "event": "one_day_reminder_sent",
+          "to": "subscribed"
+        },
+        {
+          "from": "subscribed",
+          "event": "unsubscribe_clicked",
+          "to": "unsubscribed"
+        },
+        {
+          "from": "paid",
+          "event": "paid_access_revoked",
+          "to": "revoked"
+        },
+        {
+          "from": "paid",
+          "event": "paid_order_email_replaced",
+          "to": "paid"
+        },
+        {
+          "from": "paid",
+          "event": "cohort_closed",
+          "to": "closed"
+        }
+      ]
+    }
+  ],
+  "decisions": [
+    {
+      "region": "default",
+      "state": "visitor",
+      "event": "paid_parent_fulfilled",
+      "ignored": "Run A explicitly records no action for paid_parent_fulfilled while visitor."
+    },
+    {
+      "region": "default",
+      "state": "visitor",
+      "event": "repeated_checkout_event_received",
+      "ignored": "Run A explicitly records no action for repeated_checkout_event_received while visitor."
+    },
+    {
+      "region": "default",
+      "state": "visitor",
+      "event": "sales_campaign_sent",
+      "ignored": "Run A explicitly records no action for sales_campaign_sent while visitor."
+    },
+    {
+      "region": "default",
+      "state": "visitor",
+      "event": "two_day_reminder_sent",
+      "ignored": "Run A explicitly records no action for two_day_reminder_sent while visitor."
+    },
+    {
+      "region": "default",
+      "state": "visitor",
+      "event": "one_day_reminder_sent",
+      "ignored": "Run A explicitly records no action for one_day_reminder_sent while visitor."
+    },
+    {
+      "region": "default",
+      "state": "visitor",
+      "event": "unsubscribe_clicked",
+      "ignored": "Run A explicitly records no action for unsubscribe_clicked while visitor."
+    },
+    {
+      "region": "default",
+      "state": "visitor",
+      "event": "paid_access_revoked",
+      "ignored": "Run A explicitly records no action for paid_access_revoked while visitor."
+    },
+    {
+      "region": "default",
+      "state": "visitor",
+      "event": "paid_order_email_replaced",
+      "ignored": "Run A explicitly records no action for paid_order_email_replaced while visitor."
+    },
+    {
+      "region": "default",
+      "state": "visitor",
+      "event": "cohort_closed",
+      "ignored": "Run A explicitly records no action for cohort_closed while visitor."
+    },
+    {
+      "region": "default",
+      "state": "subscribed",
+      "event": "quiz_submitted_with_marketing_consent",
+      "ignored": "Run A explicitly records no action for quiz_submitted_with_marketing_consent while subscribed."
+    },
+    {
+      "region": "default",
+      "state": "subscribed",
+      "event": "quiz_submitted_without_marketing_consent",
+      "ignored": "Run A explicitly records no action for quiz_submitted_without_marketing_consent while subscribed."
+    },
+    {
+      "region": "default",
+      "state": "subscribed",
+      "event": "paid_parent_fulfilled",
+      "ignored": "Run A explicitly records no action for paid_parent_fulfilled while subscribed."
+    },
+    {
+      "region": "default",
+      "state": "subscribed",
+      "event": "repeated_checkout_event_received",
+      "ignored": "Run A explicitly records no action for repeated_checkout_event_received while subscribed."
+    },
+    {
+      "region": "default",
+      "state": "subscribed",
+      "event": "paid_access_revoked",
+      "ignored": "Run A explicitly records no action for paid_access_revoked while subscribed."
+    },
+    {
+      "region": "default",
+      "state": "subscribed",
+      "event": "paid_order_email_replaced",
+      "ignored": "Run A explicitly records no action for paid_order_email_replaced while subscribed."
+    },
+    {
+      "region": "default",
+      "state": "subscribed",
+      "event": "cohort_closed",
+      "ignored": "Run A explicitly records no action for cohort_closed while subscribed."
+    },
+    {
+      "region": "default",
+      "state": "paid",
+      "event": "quiz_submitted_with_marketing_consent",
+      "ignored": "Run A explicitly records no action for quiz_submitted_with_marketing_consent while paid."
+    },
+    {
+      "region": "default",
+      "state": "paid",
+      "event": "quiz_submitted_without_marketing_consent",
+      "ignored": "Run A explicitly records no action for quiz_submitted_without_marketing_consent while paid."
+    },
+    {
+      "region": "default",
+      "state": "paid",
+      "event": "full_series_checkout_completed",
+      "ignored": "Run A explicitly records no action for full_series_checkout_completed while paid."
+    },
+    {
+      "region": "default",
+      "state": "paid",
+      "event": "drop_in_checkout_refused",
+      "ignored": "Run A explicitly records no action for drop_in_checkout_refused while paid."
+    },
+    {
+      "region": "default",
+      "state": "paid",
+      "event": "sales_campaign_sent",
+      "ignored": "Run A explicitly records no action for sales_campaign_sent while paid."
+    },
+    {
+      "region": "default",
+      "state": "paid",
+      "event": "two_day_reminder_sent",
+      "ignored": "Run A explicitly records no action for two_day_reminder_sent while paid."
+    },
+    {
+      "region": "default",
+      "state": "paid",
+      "event": "one_day_reminder_sent",
+      "ignored": "Run A explicitly records no action for one_day_reminder_sent while paid."
+    },
+    {
+      "region": "default",
+      "state": "paid",
+      "event": "unsubscribe_clicked",
+      "ignored": "Run A explicitly records no action for unsubscribe_clicked while paid."
+    },
+    {
+      "region": "default",
+      "state": "visitor",
+      "event": "refund",
+      "ignored": "Run A explicitly records no action for refund while visitor."
+    },
+    {
+      "region": "default",
+      "state": "visitor",
+      "event": "dispute",
+      "ignored": "Run A explicitly records no action for dispute while visitor."
+    },
+    {
+      "region": "default",
+      "state": "visitor",
+      "event": "chargeback",
+      "ignored": "Run A explicitly records no action for chargeback while visitor."
+    },
+    {
+      "region": "default",
+      "state": "visitor",
+      "event": "unsubscribe_after_purchase",
+      "ignored": "Run A explicitly records no action for unsubscribe_after_purchase while visitor."
+    },
+    {
+      "region": "default",
+      "state": "visitor",
+      "event": "address_change",
+      "ignored": "Run A explicitly records no action for address_change while visitor."
+    },
+    {
+      "region": "default",
+      "state": "visitor",
+      "event": "duplicate_purchase",
+      "ignored": "Run A explicitly records no action for duplicate_purchase while visitor."
+    },
+    {
+      "region": "default",
+      "state": "visitor",
+      "event": "late_or_repeated_webhook",
+      "ignored": "Run A explicitly records no action for late_or_repeated_webhook while visitor."
+    },
+    {
+      "region": "default",
+      "state": "subscribed",
+      "event": "refund",
+      "ignored": "Run A explicitly records no action for refund while subscribed."
+    },
+    {
+      "region": "default",
+      "state": "subscribed",
+      "event": "dispute",
+      "ignored": "Run A explicitly records no action for dispute while subscribed."
+    },
+    {
+      "region": "default",
+      "state": "subscribed",
+      "event": "chargeback",
+      "ignored": "Run A explicitly records no action for chargeback while subscribed."
+    },
+    {
+      "region": "default",
+      "state": "subscribed",
+      "event": "unsubscribe_after_purchase",
+      "ignored": "Run A explicitly records no action for unsubscribe_after_purchase while subscribed."
+    },
+    {
+      "region": "default",
+      "state": "subscribed",
+      "event": "address_change",
+      "ignored": "Run A explicitly records no action for address_change while subscribed."
+    },
+    {
+      "region": "default",
+      "state": "subscribed",
+      "event": "duplicate_purchase",
+      "ignored": "Run A explicitly records no action for duplicate_purchase while subscribed."
+    },
+    {
+      "region": "default",
+      "state": "subscribed",
+      "event": "late_or_repeated_webhook",
+      "ignored": "Run A explicitly records no action for late_or_repeated_webhook while subscribed."
+    },
+    {
+      "region": "default",
+      "state": "paid",
+      "event": "refund",
+      "absent": {
+        "owner": "Operations",
+        "recovery": "Review refund for paid manually."
+      }
+    },
+    {
+      "region": "default",
+      "state": "paid",
+      "event": "dispute",
+      "absent": {
+        "owner": "Operations",
+        "recovery": "Review dispute for paid manually."
+      }
+    },
+    {
+      "region": "default",
+      "state": "paid",
+      "event": "chargeback",
+      "absent": {
+        "owner": "Operations",
+        "recovery": "Review chargeback for paid manually."
+      }
+    },
+    {
+      "region": "default",
+      "state": "paid",
+      "event": "unsubscribe_after_purchase",
+      "absent": {
+        "owner": "Operations",
+        "recovery": "Review unsubscribe_after_purchase for paid manually."
+      }
+    },
+    {
+      "region": "default",
+      "state": "paid",
+      "event": "address_change",
+      "absent": {
+        "owner": "Operations",
+        "recovery": "Review address_change for paid manually."
+      }
+    },
+    {
+      "region": "default",
+      "state": "paid",
+      "event": "duplicate_purchase",
+      "ignored": "Run A explicitly records no action for duplicate_purchase while paid."
+    },
+    {
+      "region": "default",
+      "state": "paid",
+      "event": "late_or_repeated_webhook",
+      "ignored": "Run A explicitly records no action for late_or_repeated_webhook while paid."
+    },
+    {
+      "region": "default",
+      "state": "unsubscribed",
+      "event": "quiz_submitted_with_marketing_consent",
+      "ignored": "Run A explicitly records no action for quiz_submitted_with_marketing_consent while unsubscribed."
+    },
+    {
+      "region": "default",
+      "state": "unsubscribed",
+      "event": "quiz_submitted_without_marketing_consent",
+      "ignored": "Run A explicitly records no action for quiz_submitted_without_marketing_consent while unsubscribed."
+    },
+    {
+      "region": "default",
+      "state": "unsubscribed",
+      "event": "full_series_checkout_completed",
+      "ignored": "Run A explicitly records no action for full_series_checkout_completed while unsubscribed."
+    },
+    {
+      "region": "default",
+      "state": "unsubscribed",
+      "event": "paid_parent_fulfilled",
+      "ignored": "Run A explicitly records no action for paid_parent_fulfilled while unsubscribed."
+    },
+    {
+      "region": "default",
+      "state": "unsubscribed",
+      "event": "repeated_checkout_event_received",
+      "ignored": "Run A explicitly records no action for repeated_checkout_event_received while unsubscribed."
+    },
+    {
+      "region": "default",
+      "state": "unsubscribed",
+      "event": "drop_in_checkout_refused",
+      "ignored": "Run A explicitly records no action for drop_in_checkout_refused while unsubscribed."
+    },
+    {
+      "region": "default",
+      "state": "unsubscribed",
+      "event": "sales_campaign_sent",
+      "ignored": "Run A explicitly records no action for sales_campaign_sent while unsubscribed."
+    },
+    {
+      "region": "default",
+      "state": "unsubscribed",
+      "event": "two_day_reminder_sent",
+      "ignored": "Run A explicitly records no action for two_day_reminder_sent while unsubscribed."
+    },
+    {
+      "region": "default",
+      "state": "unsubscribed",
+      "event": "one_day_reminder_sent",
+      "ignored": "Run A explicitly records no action for one_day_reminder_sent while unsubscribed."
+    },
+    {
+      "region": "default",
+      "state": "unsubscribed",
+      "event": "unsubscribe_clicked",
+      "ignored": "Run A explicitly records no action for unsubscribe_clicked while unsubscribed."
+    },
+    {
+      "region": "default",
+      "state": "unsubscribed",
+      "event": "paid_access_revoked",
+      "ignored": "Run A explicitly records no action for paid_access_revoked while unsubscribed."
+    },
+    {
+      "region": "default",
+      "state": "unsubscribed",
+      "event": "paid_order_email_replaced",
+      "ignored": "Run A explicitly records no action for paid_order_email_replaced while unsubscribed."
+    },
+    {
+      "region": "default",
+      "state": "unsubscribed",
+      "event": "cohort_closed",
+      "ignored": "Run A explicitly records no action for cohort_closed while unsubscribed."
+    },
+    {
+      "region": "default",
+      "state": "unsubscribed",
+      "event": "refund",
+      "ignored": "Run A explicitly records no action for refund while unsubscribed."
+    },
+    {
+      "region": "default",
+      "state": "unsubscribed",
+      "event": "dispute",
+      "ignored": "Run A explicitly records no action for dispute while unsubscribed."
+    },
+    {
+      "region": "default",
+      "state": "unsubscribed",
+      "event": "chargeback",
+      "ignored": "Run A explicitly records no action for chargeback while unsubscribed."
+    },
+    {
+      "region": "default",
+      "state": "unsubscribed",
+      "event": "unsubscribe_after_purchase",
+      "ignored": "Run A explicitly records no action for unsubscribe_after_purchase while unsubscribed."
+    },
+    {
+      "region": "default",
+      "state": "unsubscribed",
+      "event": "address_change",
+      "ignored": "Run A explicitly records no action for address_change while unsubscribed."
+    },
+    {
+      "region": "default",
+      "state": "unsubscribed",
+      "event": "duplicate_purchase",
+      "ignored": "Run A explicitly records no action for duplicate_purchase while unsubscribed."
+    },
+    {
+      "region": "default",
+      "state": "unsubscribed",
+      "event": "late_or_repeated_webhook",
+      "ignored": "Run A explicitly records no action for late_or_repeated_webhook while unsubscribed."
+    },
+    {
+      "region": "default",
+      "state": "revoked",
+      "event": "quiz_submitted_with_marketing_consent",
+      "ignored": "Run A explicitly records no action for quiz_submitted_with_marketing_consent while revoked."
+    },
+    {
+      "region": "default",
+      "state": "revoked",
+      "event": "quiz_submitted_without_marketing_consent",
+      "ignored": "Run A explicitly records no action for quiz_submitted_without_marketing_consent while revoked."
+    },
+    {
+      "region": "default",
+      "state": "revoked",
+      "event": "full_series_checkout_completed",
+      "ignored": "Run A explicitly records no action for full_series_checkout_completed while revoked."
+    },
+    {
+      "region": "default",
+      "state": "revoked",
+      "event": "paid_parent_fulfilled",
+      "ignored": "Run A explicitly records no action for paid_parent_fulfilled while revoked."
+    },
+    {
+      "region": "default",
+      "state": "revoked",
+      "event": "repeated_checkout_event_received",
+      "ignored": "Run A explicitly records no action for repeated_checkout_event_received while revoked."
+    },
+    {
+      "region": "default",
+      "state": "revoked",
+      "event": "drop_in_checkout_refused",
+      "ignored": "Run A explicitly records no action for drop_in_checkout_refused while revoked."
+    },
+    {
+      "region": "default",
+      "state": "revoked",
+      "event": "sales_campaign_sent",
+      "ignored": "Run A explicitly records no action for sales_campaign_sent while revoked."
+    },
+    {
+      "region": "default",
+      "state": "revoked",
+      "event": "two_day_reminder_sent",
+      "ignored": "Run A explicitly records no action for two_day_reminder_sent while revoked."
+    },
+    {
+      "region": "default",
+      "state": "revoked",
+      "event": "one_day_reminder_sent",
+      "ignored": "Run A explicitly records no action for one_day_reminder_sent while revoked."
+    },
+    {
+      "region": "default",
+      "state": "revoked",
+      "event": "unsubscribe_clicked",
+      "ignored": "Run A explicitly records no action for unsubscribe_clicked while revoked."
+    },
+    {
+      "region": "default",
+      "state": "revoked",
+      "event": "paid_access_revoked",
+      "ignored": "Run A explicitly records no action for paid_access_revoked while revoked."
+    },
+    {
+      "region": "default",
+      "state": "revoked",
+      "event": "paid_order_email_replaced",
+      "ignored": "Run A explicitly records no action for paid_order_email_replaced while revoked."
+    },
+    {
+      "region": "default",
+      "state": "revoked",
+      "event": "cohort_closed",
+      "ignored": "Run A explicitly records no action for cohort_closed while revoked."
+    },
+    {
+      "region": "default",
+      "state": "revoked",
+      "event": "refund",
+      "absent": {
+        "owner": "Operations",
+        "recovery": "Review refund for revoked manually."
+      }
+    },
+    {
+      "region": "default",
+      "state": "revoked",
+      "event": "dispute",
+      "absent": {
+        "owner": "Operations",
+        "recovery": "Review dispute for revoked manually."
+      }
+    },
+    {
+      "region": "default",
+      "state": "revoked",
+      "event": "chargeback",
+      "ignored": "Run A explicitly records no action for chargeback while revoked."
+    },
+    {
+      "region": "default",
+      "state": "revoked",
+      "event": "unsubscribe_after_purchase",
+      "ignored": "Run A explicitly records no action for unsubscribe_after_purchase while revoked."
+    },
+    {
+      "region": "default",
+      "state": "revoked",
+      "event": "address_change",
+      "ignored": "Run A explicitly records no action for address_change while revoked."
+    },
+    {
+      "region": "default",
+      "state": "revoked",
+      "event": "duplicate_purchase",
+      "ignored": "Run A explicitly records no action for duplicate_purchase while revoked."
+    },
+    {
+      "region": "default",
+      "state": "revoked",
+      "event": "late_or_repeated_webhook",
+      "ignored": "Run A explicitly records no action for late_or_repeated_webhook while revoked."
+    },
+    {
+      "region": "default",
+      "state": "closed",
+      "event": "quiz_submitted_with_marketing_consent",
+      "ignored": "Run A explicitly records no action for quiz_submitted_with_marketing_consent while closed."
+    },
+    {
+      "region": "default",
+      "state": "closed",
+      "event": "quiz_submitted_without_marketing_consent",
+      "ignored": "Run A explicitly records no action for quiz_submitted_without_marketing_consent while closed."
+    },
+    {
+      "region": "default",
+      "state": "closed",
+      "event": "full_series_checkout_completed",
+      "ignored": "Run A explicitly records no action for full_series_checkout_completed while closed."
+    },
+    {
+      "region": "default",
+      "state": "closed",
+      "event": "paid_parent_fulfilled",
+      "ignored": "Run A explicitly records no action for paid_parent_fulfilled while closed."
+    },
+    {
+      "region": "default",
+      "state": "closed",
+      "event": "repeated_checkout_event_received",
+      "ignored": "Run A explicitly records no action for repeated_checkout_event_received while closed."
+    },
+    {
+      "region": "default",
+      "state": "closed",
+      "event": "drop_in_checkout_refused",
+      "ignored": "Run A explicitly records no action for drop_in_checkout_refused while closed."
+    },
+    {
+      "region": "default",
+      "state": "closed",
+      "event": "sales_campaign_sent",
+      "ignored": "Run A explicitly records no action for sales_campaign_sent while closed."
+    },
+    {
+      "region": "default",
+      "state": "closed",
+      "event": "two_day_reminder_sent",
+      "ignored": "Run A explicitly records no action for two_day_reminder_sent while closed."
+    },
+    {
+      "region": "default",
+      "state": "closed",
+      "event": "one_day_reminder_sent",
+      "ignored": "Run A explicitly records no action for one_day_reminder_sent while closed."
+    },
+    {
+      "region": "default",
+      "state": "closed",
+      "event": "unsubscribe_clicked",
+      "ignored": "Run A explicitly records no action for unsubscribe_clicked while closed."
+    },
+    {
+      "region": "default",
+      "state": "closed",
+      "event": "paid_access_revoked",
+      "ignored": "Run A explicitly records no action for paid_access_revoked while closed."
+    },
+    {
+      "region": "default",
+      "state": "closed",
+      "event": "paid_order_email_replaced",
+      "ignored": "Run A explicitly records no action for paid_order_email_replaced while closed."
+    },
+    {
+      "region": "default",
+      "state": "closed",
+      "event": "cohort_closed",
+      "ignored": "Run A explicitly records no action for cohort_closed while closed."
+    },
+    {
+      "region": "default",
+      "state": "closed",
+      "event": "refund",
+      "absent": {
+        "owner": "Operations",
+        "recovery": "Review refund for closed manually."
+      }
+    },
+    {
+      "region": "default",
+      "state": "closed",
+      "event": "dispute",
+      "absent": {
+        "owner": "Operations",
+        "recovery": "Review dispute for closed manually."
+      }
+    },
+    {
+      "region": "default",
+      "state": "closed",
+      "event": "chargeback",
+      "absent": {
+        "owner": "Operations",
+        "recovery": "Review chargeback for closed manually."
+      }
+    },
+    {
+      "region": "default",
+      "state": "closed",
+      "event": "unsubscribe_after_purchase",
+      "ignored": "Run A explicitly records no action for unsubscribe_after_purchase while closed."
+    },
+    {
+      "region": "default",
+      "state": "closed",
+      "event": "address_change",
+      "ignored": "Run A explicitly records no action for address_change while closed."
+    },
+    {
+      "region": "default",
+      "state": "closed",
+      "event": "duplicate_purchase",
+      "ignored": "Run A explicitly records no action for duplicate_purchase while closed."
+    },
+    {
+      "region": "default",
+      "state": "closed",
+      "event": "late_or_repeated_webhook",
+      "ignored": "Run A explicitly records no action for late_or_repeated_webhook while closed."
+    }
+  ]
+}

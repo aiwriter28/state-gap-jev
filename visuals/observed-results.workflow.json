@@ -1,0 +1,149 @@
+{
+  "schema_version": 2,
+  "diagram_type": "workflow",
+  "meta": {
+    "title": "One path checked. The rest stays untested.",
+    "quality_profile": "showcase",
+    "animation": "none",
+    "visual_preset": "editorial",
+    "legend": {
+      "mode": "hidden"
+    },
+    "views": [
+      {
+        "id": "observed",
+        "label": "Recorded navigation",
+        "focus": [
+          "customer",
+          "checkout",
+          "evidence"
+        ],
+        "note": "Both Jev providers passed the corrected fixture and failed the broken fixture."
+      },
+      {
+        "id": "untested",
+        "label": "Still to verify",
+        "focus": [
+          "payment",
+          "entitlement",
+          "recovery"
+        ],
+        "note": "No payment, hours update or refund was executed."
+      }
+    ]
+  },
+  "lanes": [
+    {
+      "id": "observed",
+      "label": "OBSERVED: NAVIGATION"
+    },
+    {
+      "id": "remaining",
+      "label": "UNTESTED: BACKEND"
+    }
+  ],
+  "nodes": [
+    {
+      "id": "customer",
+      "lane": "observed",
+      "col": 0,
+      "type": "external",
+      "label": "Existing customer",
+      "sublabel": "Wants five more hours",
+      "height": 90,
+      "width": 170
+    },
+    {
+      "id": "checkout",
+      "lane": "observed",
+      "col": 2,
+      "type": "backend",
+      "label": "PASS: checkout found",
+      "sublabel": "Both Jev providers",
+      "height": 90,
+      "width": 170
+    },
+    {
+      "id": "evidence",
+      "lane": "observed",
+      "col": 5,
+      "type": "messagebus",
+      "label": "Inspect the evidence",
+      "sublabel": "Exact checks and frames",
+      "height": 90,
+      "width": 170
+    },
+    {
+      "id": "payment",
+      "lane": "remaining",
+      "col": 0,
+      "type": "security",
+      "label": "Payment untested",
+      "sublabel": "No purchase executed",
+      "height": 90,
+      "width": 170
+    },
+    {
+      "id": "entitlement",
+      "lane": "remaining",
+      "col": 2,
+      "type": "database",
+      "label": "Hours untested",
+      "sublabel": "No account update",
+      "height": 90,
+      "width": 170
+    },
+    {
+      "id": "recovery",
+      "lane": "remaining",
+      "col": 5,
+      "type": "database",
+      "label": "Recovery untested",
+      "sublabel": "No refund executed",
+      "height": 90,
+      "width": 170
+    }
+  ],
+  "edges": [
+    {
+      "from": "customer",
+      "to": "checkout",
+      "label": "finds add-hours link"
+    },
+    {
+      "from": "checkout",
+      "to": "evidence",
+      "label": "records navigation"
+    },
+    {
+      "from": "payment",
+      "to": "entitlement",
+      "label": "planned update",
+      "variant": "dashed"
+    },
+    {
+      "from": "entitlement",
+      "to": "recovery",
+      "label": "planned recovery",
+      "variant": "dashed"
+    }
+  ],
+  "cards": [
+    {
+      "dot": "emerald",
+      "title": "Recorded example, October 7",
+      "items": [
+        "TypeSafe and OpenRouter: after PASS, before FAIL.",
+        "Cell: payment.ready.add_hours. Check: URL + visible text."
+      ]
+    },
+    {
+      "dot": "amber",
+      "title": "A precise limit",
+      "items": [
+        "PASS means the add-hours checkout was reached.",
+        "No purchase, entitlement change or refund was tested."
+      ]
+    }
+  ]
+}

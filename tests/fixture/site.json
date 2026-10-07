@@ -1,0 +1,26 @@
+{
+  "name": "Example",
+  "live_hosts": ["example.com", "www.example.com"],
+  "deployment_url_pattern": "^https://(example-[a-z0-9]+-team\\.vercel\\.app|example-sandbox\\.vercel\\.app)$",
+  "protection_bypass": false,
+  "allow": [
+    {"origin": "https://fonts.googleapis.com"},
+    {"origin": "https://fonts.gstatic.com"},
+    {"origin": "https://clerk.example.com", "path": "^/(npm|v1)/"}
+  ],
+  "steps": ["discover", "signin", "pay", "help"],
+  "avoid": "AI guide|^Send$",
+  "max_actions": 40,
+  "budget_usd": 0.5,
+  "write": {
+    "sandbox_origin": "https://example-sandbox.vercel.app",
+    "api_allow": [{"method": "POST", "path": "/api/intake", "query": {"action": ["signup", "checkout"]}}],
+    "email_format": "tester+jev{run}{name}@example.com",
+    "mailbox": "tester@example.com",
+    "rate_limits": {"sign_in_per_hour": 20},
+    "payment": "stripe",
+    "payment_account": "acct_test",
+    "auth_ref": "abcdefgh",
+    "shared_database_exception": "D-000"
+  }
+}

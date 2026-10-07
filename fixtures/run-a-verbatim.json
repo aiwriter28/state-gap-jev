@@ -1,0 +1,60 @@
+{
+  "systems": [
+    { "name": "payment", "region": "default" },
+    { "name": "fulfillment", "region": "default" },
+    { "name": "marketing groups", "region": "default" },
+    { "name": "campaign sends", "region": "default" },
+    { "name": "calendar", "region": "default" },
+    { "name": "reminder sequences", "region": "default" },
+    { "name": "file sharing", "region": "default" },
+    { "name": "CRM", "none": true, "reason": "No CRM participates in Run A." },
+    { "name": "workflow engine", "region": "default" }
+  ],
+  "events": [
+    { "id": "quiz_submitted_with_marketing_consent", "name": "Submit quiz with marketing consent" },
+    { "id": "quiz_submitted_without_marketing_consent", "name": "Submit quiz without marketing consent" },
+    { "id": "full_series_checkout_completed", "name": "Complete Stripe checkout for the full series" },
+    { "id": "paid_parent_fulfilled", "name": "Fulfill paid parent" },
+    { "id": "repeated_checkout_event_received", "name": "Receive repeated checkout event" },
+    { "id": "drop_in_checkout_refused", "name": "Refuse Drop-In checkout" },
+    { "id": "sales_campaign_sent", "name": "Send sales campaign" },
+    { "id": "two_day_reminder_sent", "name": "Send two-day reminder" },
+    { "id": "one_day_reminder_sent", "name": "Send one-day reminder" },
+    { "id": "unsubscribe_clicked", "name": "Click unsubscribe" },
+    { "id": "paid_access_revoked", "name": "Revoke paid access" },
+    { "id": "paid_order_email_replaced", "name": "Replace paid order email" },
+    { "id": "cohort_closed", "name": "Close cohort" }
+  ],
+  "regions": [
+    {
+      "id": "default",
+      "name": "Run A",
+      "states": [
+        { "id": "visitor", "name": "Visitor", "isInitial": true, "isFinal": false },
+        { "id": "subscribed", "name": "Subscribed", "isInitial": false, "isFinal": false },
+        { "id": "paid", "name": "Paid", "isInitial": false, "isFinal": false },
+        { "id": "unsubscribed", "name": "Unsubscribed", "isInitial": false, "isFinal": true },
+        { "id": "revoked", "name": "Revoked", "isInitial": false, "isFinal": true },
+        { "id": "closed", "name": "Closed", "isInitial": false, "isFinal": true }
+      ],
+      "transitions": [
+        { "from": "visitor", "event": "quiz_submitted_with_marketing_consent", "to": "subscribed" },
+        { "from": "visitor", "event": "quiz_submitted_without_marketing_consent", "to": "visitor" },
+        { "from": "visitor", "event": "full_series_checkout_completed", "to": "paid" },
+        { "from": "subscribed", "event": "full_series_checkout_completed", "to": "paid" },
+        { "from": "paid", "event": "paid_parent_fulfilled", "to": "paid" },
+        { "from": "paid", "event": "repeated_checkout_event_received", "to": "paid" },
+        { "from": "visitor", "event": "drop_in_checkout_refused", "to": "visitor" },
+        { "from": "subscribed", "event": "drop_in_checkout_refused", "to": "subscribed" },
+        { "from": "subscribed", "event": "sales_campaign_sent", "to": "subscribed" },
+        { "from": "subscribed", "event": "two_day_reminder_sent", "to": "subscribed" },
+        { "from": "subscribed", "event": "one_day_reminder_sent", "to": "subscribed" },
+        { "from": "subscribed", "event": "unsubscribe_clicked", "to": "unsubscribed" },
+        { "from": "paid", "event": "paid_access_revoked", "to": "revoked" },
+        { "from": "paid", "event": "paid_order_email_replaced", "to": "paid" },
+        { "from": "paid", "event": "cohort_closed", "to": "closed" }
+      ]
+    }
+  ],
+  "decisions": []
+}

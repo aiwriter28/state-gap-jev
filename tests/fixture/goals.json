@@ -1,0 +1,25 @@
+[
+  {
+    "id": "price",
+    "step": "discover",
+    "start": "/",
+    "goal": "Find out what the report costs.",
+    "pass": {"text": ["\\$195"]}
+  },
+  {
+    "id": "contact",
+    "step": "help",
+    "viewport": "desktop",
+    "start": "/",
+    "goal": "Find an email address for reaching a person.",
+    "pass": {"any": [{"text": ["hello@example\\.com"]}, {"url": "^mailto:hello@example\\.com"}]}
+  },
+  {
+    "id": "old-link",
+    "step": "help",
+    "start": "/report/00000000-0000-4000-8000-000000000000",
+    "goal": "You opened an old report link on a new phone. Find out what to do.",
+    "pass": {"url": "/sign-in"},
+    "known": "D-000: the sign-in page is not built yet"
+  }
+]

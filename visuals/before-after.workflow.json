@@ -1,0 +1,148 @@
+{
+  "schema_version": 2,
+  "diagram_type": "workflow",
+  "meta": {
+    "title": "One missing path. Three systems affected.",
+    "quality_profile": "showcase",
+    "animation": "none",
+    "visual_preset": "editorial",
+    "legend": {
+      "mode": "hidden"
+    },
+    "views": [
+      {
+        "id": "before",
+        "label": "Before: a missing decision",
+        "focus": [
+          "before_customer",
+          "before_gap",
+          "before_effect"
+        ],
+        "note": "The synthetic model omits payment.ready.add_hours."
+      },
+      {
+        "id": "after",
+        "label": "After: a resolved design",
+        "focus": [
+          "after_customer",
+          "after_checkout",
+          "after_effect"
+        ],
+        "note": "All 48 cells are resolved. This does not prove implementation."
+      }
+    ]
+  },
+  "lanes": [
+    {
+      "id": "before",
+      "label": "BEFORE: UNRESOLVED"
+    },
+    {
+      "id": "after",
+      "label": "AFTER: PLANNED"
+    }
+  ],
+  "nodes": [
+    {
+      "id": "before_customer",
+      "lane": "before",
+      "col": 0,
+      "type": "external",
+      "label": "Existing customer",
+      "sublabel": "Needs five more hours",
+      "height": 90,
+      "width": 170
+    },
+    {
+      "id": "before_gap",
+      "lane": "before",
+      "col": 2,
+      "type": "security",
+      "label": "No add-hours path",
+      "sublabel": "One unresolved cell",
+      "height": 90,
+      "width": 170
+    },
+    {
+      "id": "before_effect",
+      "lane": "before",
+      "col": 5,
+      "type": "database",
+      "label": "Impact to inspect",
+      "sublabel": "Payment, hours, ledger",
+      "height": 90,
+      "width": 170
+    },
+    {
+      "id": "after_customer",
+      "lane": "after",
+      "col": 0,
+      "type": "external",
+      "label": "Existing customer",
+      "sublabel": "Keeps the agreement",
+      "height": 90,
+      "width": 170
+    },
+    {
+      "id": "after_checkout",
+      "lane": "after",
+      "col": 2,
+      "type": "backend",
+      "label": "Add-hours checkout",
+      "sublabel": "Design path specified",
+      "height": 90,
+      "width": 170
+    },
+    {
+      "id": "after_effect",
+      "lane": "after",
+      "col": 5,
+      "type": "database",
+      "label": "Coordinate updates",
+      "sublabel": "Hours + service ledger",
+      "height": 90,
+      "width": 170
+    }
+  ],
+  "edges": [
+    {
+      "from": "before_customer",
+      "to": "before_gap",
+      "label": "requests hours"
+    },
+    {
+      "from": "before_gap",
+      "to": "before_effect",
+      "label": "leaves uncertainty",
+      "variant": "security"
+    },
+    {
+      "from": "after_customer",
+      "to": "after_checkout",
+      "label": "requests hours"
+    },
+    {
+      "from": "after_checkout",
+      "to": "after_effect",
+      "label": "payment succeeds"
+    }
+  ],
+  "cards": [
+    {
+      "dot": "rose",
+      "title": "What the checker found",
+      "items": [
+        "Before: 1 gap, 3 unreachable states, 1 dead end.",
+        "Stable cell: payment.ready.add_hours."
+      ]
+    },
+    {
+      "dot": "emerald",
+      "title": "What remains to test",
+      "items": [
+        "After: 48 resolved cells; implementation is untested.",
+        "Refund recovery is assigned to service operations."
+      ]
+    }
+  ]
+}

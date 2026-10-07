@@ -1,0 +1,18 @@
+[
+  {
+    "id": "add-hours",
+    "step": "add_hours",
+    "viewport": "desktop",
+    "start": "/after/",
+    "goal": "You already have an active service agreement. Find the option to add five service hours to that existing agreement and open its checkout. Do not buy another contract.",
+    "pass": {
+      "url": "/after/checkout.html$",
+      "text": [
+        "five service hours"
+      ]
+    },
+    "cells": [
+      "payment.ready.add_hours"
+    ]
+  }
+]

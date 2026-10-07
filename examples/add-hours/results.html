@@ -1,0 +1,56 @@
+<!doctype html><html lang="en"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Workflow evidence</title>
+<style>body{font:16px/1.55 system-ui,sans-serif;color:#18333d;background:#f4f3ed;margin:0;padding:clamp(20px,4vw,64px)}main{max-width:1200px;margin:auto}h1{font-size:clamp(32px,5vw,56px);letter-spacing:-.04em;margin:.4em 0}a{color:#005e71}table{width:100%;border-collapse:collapse;background:white}th,td{text-align:left;vertical-align:top;padding:16px;border-bottom:1px solid #d8dedc}code{overflow-wrap:anywhere}summary{cursor:pointer}.pass{color:#176149}.fail,.error{color:#a92c2c}.flaky,.skip{color:#795314}.untested{color:#56646b}select{font:inherit;padding:8px;margin:12px}aside{padding:18px;border-left:4px solid #b56823;background:#fff8e9;margin:24px 0}.table{overflow:auto}small{color:#485c65}details p{max-width:480px}a:focus-visible,summary:focus-visible,select:focus-visible{outline:3px solid #a84b17;outline-offset:3px}</style>
+<main><small>STATE GAP + JEV</small><h1>What is decided?<br>What was actually checked?</h1><p>48 modeled cells · 0 unresolved · 0 unreachable states · 0 dead ends</p>
+<p>Design-only view. No browser run attached.</p>
+<p><a href="../../visuals/before-after.html">Open interactive workflow map</a></p>
+<aside>A linked goal can pass its recorded check while other properties of that cell remain untested. Planned behavior, ignored events and assigned recovery are design decisions. They do not prove implementation. Retry outcomes must be inspected alongside original attempts.</aside>
+<label for="status">Show execution status</label><select id="status"><option value="all">All cells</option><option value="pass">PASS</option><option value="flaky">FLAKY</option><option value="fail">FAIL</option><option value="error">ERROR</option><option value="skip">SKIP</option><option value="untested">UNTESTED</option></select>
+<div class="table"><table><thead><tr><th>Model cell</th><th>Design</th><th>Linked goal observations</th></tr></thead><tbody><tr data-status="untested"><td><code>payment.ready.add_hours</code></td><td>PLANNED: wired</td><td><b class="untested">UNTESTED</b></td></tr>
+<tr data-status="untested"><td><code>payment.ready.payment_succeeded</code></td><td>PLANNED: absent, owner assigned</td><td><b class="untested">UNTESTED</b></td></tr>
+<tr data-status="untested"><td><code>payment.ready.payment_failed</code></td><td>PLANNED: ignored</td><td><b class="untested">UNTESTED</b></td></tr>
+<tr data-status="untested"><td><code>payment.ready.refund</code></td><td>PLANNED: ignored</td><td><b class="untested">UNTESTED</b></td></tr>
+<tr data-status="untested"><td><code>payment.ready.duplicate_purchase</code></td><td>PLANNED: ignored</td><td><b class="untested">UNTESTED</b></td></tr>
+<tr data-status="untested"><td><code>payment.ready.late_or_repeated_webhook</code></td><td>PLANNED: ignored</td><td><b class="untested">UNTESTED</b></td></tr>
+<tr data-status="untested"><td><code>payment.pending.add_hours</code></td><td>PLANNED: ignored</td><td><b class="untested">UNTESTED</b></td></tr>
+<tr data-status="untested"><td><code>payment.pending.payment_succeeded</code></td><td>PLANNED: wired</td><td><b class="untested">UNTESTED</b></td></tr>
+<tr data-status="untested"><td><code>payment.pending.payment_failed</code></td><td>PLANNED: wired</td><td><b class="untested">UNTESTED</b></td></tr>
+<tr data-status="untested"><td><code>payment.pending.refund</code></td><td>PLANNED: ignored</td><td><b class="untested">UNTESTED</b></td></tr>
+<tr data-status="untested"><td><code>payment.pending.duplicate_purchase</code></td><td>PLANNED: ignored</td><td><b class="untested">UNTESTED</b></td></tr>
+<tr data-status="untested"><td><code>payment.pending.late_or_repeated_webhook</code></td><td>PLANNED: ignored</td><td><b class="untested">UNTESTED</b></td></tr>
+<tr data-status="untested"><td><code>payment.paid.add_hours</code></td><td>PLANNED: ignored</td><td><b class="untested">UNTESTED</b></td></tr>
+<tr data-status="untested"><td><code>payment.paid.payment_succeeded</code></td><td>PLANNED: ignored</td><td><b class="untested">UNTESTED</b></td></tr>
+<tr data-status="untested"><td><code>payment.paid.payment_failed</code></td><td>PLANNED: ignored</td><td><b class="untested">UNTESTED</b></td></tr>
+<tr data-status="untested"><td><code>payment.paid.refund</code></td><td>PLANNED: wired</td><td><b class="untested">UNTESTED</b></td></tr>
+<tr data-status="untested"><td><code>payment.paid.duplicate_purchase</code></td><td>PLANNED: ignored</td><td><b class="untested">UNTESTED</b></td></tr>
+<tr data-status="untested"><td><code>payment.paid.late_or_repeated_webhook</code></td><td>PLANNED: ignored</td><td><b class="untested">UNTESTED</b></td></tr>
+<tr data-status="untested"><td><code>payment.refunded.add_hours</code></td><td>PLANNED: ignored</td><td><b class="untested">UNTESTED</b></td></tr>
+<tr data-status="untested"><td><code>payment.refunded.payment_succeeded</code></td><td>PLANNED: ignored</td><td><b class="untested">UNTESTED</b></td></tr>
+<tr data-status="untested"><td><code>payment.refunded.payment_failed</code></td><td>PLANNED: ignored</td><td><b class="untested">UNTESTED</b></td></tr>
+<tr data-status="untested"><td><code>payment.refunded.refund</code></td><td>PLANNED: ignored</td><td><b class="untested">UNTESTED</b></td></tr>
+<tr data-status="untested"><td><code>payment.refunded.duplicate_purchase</code></td><td>PLANNED: ignored</td><td><b class="untested">UNTESTED</b></td></tr>
+<tr data-status="untested"><td><code>payment.refunded.late_or_repeated_webhook</code></td><td>PLANNED: ignored</td><td><b class="untested">UNTESTED</b></td></tr>
+<tr data-status="untested"><td><code>entitlement.active.add_hours</code></td><td>PLANNED: ignored</td><td><b class="untested">UNTESTED</b></td></tr>
+<tr data-status="untested"><td><code>entitlement.active.payment_succeeded</code></td><td>PLANNED: wired</td><td><b class="untested">UNTESTED</b></td></tr>
+<tr data-status="untested"><td><code>entitlement.active.payment_failed</code></td><td>PLANNED: ignored</td><td><b class="untested">UNTESTED</b></td></tr>
+<tr data-status="untested"><td><code>entitlement.active.refund</code></td><td>PLANNED: ignored</td><td><b class="untested">UNTESTED</b></td></tr>
+<tr data-status="untested"><td><code>entitlement.active.duplicate_purchase</code></td><td>PLANNED: ignored</td><td><b class="untested">UNTESTED</b></td></tr>
+<tr data-status="untested"><td><code>entitlement.active.late_or_repeated_webhook</code></td><td>PLANNED: ignored</td><td><b class="untested">UNTESTED</b></td></tr>
+<tr data-status="untested"><td><code>entitlement.increased.add_hours</code></td><td>PLANNED: ignored</td><td><b class="untested">UNTESTED</b></td></tr>
+<tr data-status="untested"><td><code>entitlement.increased.payment_succeeded</code></td><td>PLANNED: ignored</td><td><b class="untested">UNTESTED</b></td></tr>
+<tr data-status="untested"><td><code>entitlement.increased.payment_failed</code></td><td>PLANNED: ignored</td><td><b class="untested">UNTESTED</b></td></tr>
+<tr data-status="untested"><td><code>entitlement.increased.refund</code></td><td>PLANNED: absent, owner assigned</td><td><b class="untested">UNTESTED</b></td></tr>
+<tr data-status="untested"><td><code>entitlement.increased.duplicate_purchase</code></td><td>PLANNED: ignored</td><td><b class="untested">UNTESTED</b></td></tr>
+<tr data-status="untested"><td><code>entitlement.increased.late_or_repeated_webhook</code></td><td>PLANNED: ignored</td><td><b class="untested">UNTESTED</b></td></tr>
+<tr data-status="untested"><td><code>operations.current.add_hours</code></td><td>PLANNED: ignored</td><td><b class="untested">UNTESTED</b></td></tr>
+<tr data-status="untested"><td><code>operations.current.payment_succeeded</code></td><td>PLANNED: wired</td><td><b class="untested">UNTESTED</b></td></tr>
+<tr data-status="untested"><td><code>operations.current.payment_failed</code></td><td>PLANNED: ignored</td><td><b class="untested">UNTESTED</b></td></tr>
+<tr data-status="untested"><td><code>operations.current.refund</code></td><td>PLANNED: ignored</td><td><b class="untested">UNTESTED</b></td></tr>
+<tr data-status="untested"><td><code>operations.current.duplicate_purchase</code></td><td>PLANNED: ignored</td><td><b class="untested">UNTESTED</b></td></tr>
+<tr data-status="untested"><td><code>operations.current.late_or_repeated_webhook</code></td><td>PLANNED: ignored</td><td><b class="untested">UNTESTED</b></td></tr>
+<tr data-status="untested"><td><code>operations.updated.add_hours</code></td><td>PLANNED: ignored</td><td><b class="untested">UNTESTED</b></td></tr>
+<tr data-status="untested"><td><code>operations.updated.payment_succeeded</code></td><td>PLANNED: ignored</td><td><b class="untested">UNTESTED</b></td></tr>
+<tr data-status="untested"><td><code>operations.updated.payment_failed</code></td><td>PLANNED: ignored</td><td><b class="untested">UNTESTED</b></td></tr>
+<tr data-status="untested"><td><code>operations.updated.refund</code></td><td>PLANNED: absent, owner assigned</td><td><b class="untested">UNTESTED</b></td></tr>
+<tr data-status="untested"><td><code>operations.updated.duplicate_purchase</code></td><td>PLANNED: ignored</td><td><b class="untested">UNTESTED</b></td></tr>
+<tr data-status="untested"><td><code>operations.updated.late_or_repeated_webhook</code></td><td>PLANNED: ignored</td><td><b class="untested">UNTESTED</b></td></tr></tbody></table></div><p><small>Model SHA-256: b16d6191233f6f3cfb35d39a44c7ae10218684480039ab47b53c79f191bc1958</small></p></main>
+<script>document.querySelector('#status').addEventListener('change',event=>{for(const row of document.querySelectorAll('tbody tr'))row.hidden=event.target.value!=='all'&&!row.dataset.status.split(' ').includes(event.target.value);});</script></html>

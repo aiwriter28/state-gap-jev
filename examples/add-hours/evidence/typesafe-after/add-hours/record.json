@@ -1,0 +1,63 @@
+{
+  "id": "add-hours",
+  "step": "add_hours",
+  "viewport": "desktop",
+  "goal": "You already have an active service agreement. Find the option to add five service hours to that existing agreement and open its checkout. Do not buy another contract.",
+  "pass_check": {
+    "url": "/after/checkout.html$",
+    "text": [
+      "five service hours"
+    ]
+  },
+  "known": null,
+  "cells": [
+    "payment.ready.add_hours"
+  ],
+  "result": "pass",
+  "reason": "pass",
+  "actions": 1,
+  "seconds": 2.7,
+  "jev_calls": 1,
+  "jev_usd": 6.3924e-05,
+  "jev_provider": "typesafe",
+  "jev_models": [
+    "jev-1.13.0"
+  ],
+  "jev_usage": [
+    {
+      "provider": "typesafe",
+      "model": "jev-1.13.0",
+      "cost_usd": 6.3924e-05,
+      "input_tokens": 1522,
+      "output_tokens": 69
+    }
+  ],
+  "text_calls": 0,
+  "steps": [
+    {
+      "step": 1,
+      "operation": "CLICK",
+      "action": "Add five service hours",
+      "text": null,
+      "confidence": 1.0,
+      "page_changed": true,
+      "url": "http://127.0.0.1:18765/after/checkout.html"
+    }
+  ],
+  "last_text": "SYNTHETIC EXAMPLE \u00b7 No purchases or accounts\nAdd five service hours\nYour existing agreement stays active. This is an additional-hours checkout.\nConfirm additional hours\nThis synthetic page does not process payments or update hours.\nReturn to account",
+  "events": [],
+  "urls": [
+    "http://127.0.0.1:18765/after/",
+    "http://127.0.0.1:18765/after/checkout.html"
+  ],
+  "api": [],
+  "final_url": "http://127.0.0.1:18765/after/checkout.html",
+  "decisions": [
+    {
+      "choice": "e1",
+      "confidence": 1.0,
+      "elapsed_ms": 365,
+      "page": "5fc126bb"
+    }
+  ]
+}

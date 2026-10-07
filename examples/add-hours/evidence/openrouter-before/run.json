@@ -1,0 +1,29 @@
+{
+  "stamp": "20261007T183914Z-565d",
+  "origin": "http://127.0.0.1:18765",
+  "build": {
+    "commit": "45ed78f76d768b683de60c63ecbe57e3867b4b75",
+    "deployment": "synthetic fixture page (Git blob ID)"
+  },
+  "mode": "read",
+  "site": "Synthetic add-hours before",
+  "site_dir": "before",
+  "budget_usd": 0.05,
+  "runner": {
+    "revision": "10ea7ce",
+    "walk_py": "593c5e83e8a7b63a559c5d42f9c30361c078fc409fa0c5d877f369d7cfbd8654",
+    "snapshot_js": "11d0807fbd0e8eae587ff6ad08aba17c8f07f4461ab3d3c5e41fd45e56b135e6"
+  },
+  "inputs": {
+    "site_json": "af308af4c81dcf7f80b5469dae3e36bd857bb9d39ef227f78b77edf8d162f780",
+    "goals": "7dc58c34f4c6d212478fa3cfabe2e36982f650f11f3cf8913ed7d234de6a09b4",
+    "hooks_py": "0a14e14c8297713818e0f3ef19a96f98a32d3c65dcbb48226eae28e60c8a2883",
+    "model": "af5858eac18cf5f5c0fdfbb4afff7c6317d9e9d0b6da3d4a61ef9d16c9e6275b",
+    "model_path": "../../before.json"
+  },
+  "jev": {
+    "provider": "openrouter",
+    "model": "typesafe/jev-1.13",
+    "url": "https://openrouter.ai/api/alpha/decisions"
+  }
+}

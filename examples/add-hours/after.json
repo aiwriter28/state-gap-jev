@@ -1,0 +1,421 @@
+{
+  "profile": {
+    "activities": [
+      "payment",
+      "entitlement",
+      "operations"
+    ],
+    "seeds": [
+      {
+        "id": "refund"
+      },
+      {
+        "id": "duplicate_purchase"
+      },
+      {
+        "id": "late_or_repeated_webhook"
+      }
+    ]
+  },
+  "systems": [
+    {
+      "name": "payment",
+      "region": "payment"
+    },
+    {
+      "name": "entitlement",
+      "region": "entitlement"
+    },
+    {
+      "name": "operations",
+      "region": "operations"
+    }
+  ],
+  "events": [
+    {
+      "id": "add_hours",
+      "name": "Add Hours"
+    },
+    {
+      "id": "payment_succeeded",
+      "name": "Payment Succeeded"
+    },
+    {
+      "id": "payment_failed",
+      "name": "Payment Failed"
+    }
+  ],
+  "regions": [
+    {
+      "id": "payment",
+      "name": "Payment",
+      "states": [
+        {
+          "id": "ready",
+          "name": "Existing customer with a valid agreement",
+          "isInitial": true,
+          "isFinal": false
+        },
+        {
+          "id": "pending",
+          "name": "Pending",
+          "isInitial": false,
+          "isFinal": false
+        },
+        {
+          "id": "paid",
+          "name": "Paid",
+          "isInitial": false,
+          "isFinal": false
+        },
+        {
+          "id": "refunded",
+          "name": "Refunded",
+          "isInitial": false,
+          "isFinal": true
+        }
+      ],
+      "transitions": [
+        {
+          "from": "ready",
+          "event": "add_hours",
+          "to": "pending",
+          "evidence": "Design: spec.md, existing customer opens the additional-hours checkout without signing another contract. Browser navigation is tested separately."
+        },
+        {
+          "from": "pending",
+          "event": "payment_succeeded",
+          "to": "paid",
+          "evidence": "spec.md"
+        },
+        {
+          "from": "pending",
+          "event": "payment_failed",
+          "to": "ready",
+          "evidence": "spec.md"
+        },
+        {
+          "from": "paid",
+          "event": "refund",
+          "to": "refunded",
+          "evidence": "spec.md"
+        }
+      ]
+    },
+    {
+      "id": "entitlement",
+      "name": "Entitlement",
+      "states": [
+        {
+          "id": "active",
+          "name": "Active",
+          "isInitial": true,
+          "isFinal": false
+        },
+        {
+          "id": "increased",
+          "name": "Existing agreement credited exactly five additional hours",
+          "isInitial": false,
+          "isFinal": true
+        }
+      ],
+      "transitions": [
+        {
+          "from": "active",
+          "event": "payment_succeeded",
+          "to": "increased",
+          "evidence": "Design: spec.md, credit exactly five additional hours to the existing agreement. Requires an independent backend assertion; not proved by the navigation demo."
+        }
+      ]
+    },
+    {
+      "id": "operations",
+      "name": "Operations",
+      "states": [
+        {
+          "id": "current",
+          "name": "Current",
+          "isInitial": true,
+          "isFinal": false
+        },
+        {
+          "id": "updated",
+          "name": "Updated",
+          "isInitial": false,
+          "isFinal": true
+        }
+      ],
+      "transitions": [
+        {
+          "from": "current",
+          "event": "payment_succeeded",
+          "to": "updated",
+          "evidence": "spec.md"
+        }
+      ]
+    }
+  ],
+  "decisions": [
+    {
+      "region": "payment",
+      "state": "ready",
+      "event": "payment_succeeded",
+      "absent": {
+        "owner": "Payment operations",
+        "recovery": "Quarantine the unmatched payment and reconcile its order before granting hours."
+      }
+    },
+    {
+      "region": "payment",
+      "state": "ready",
+      "event": "payment_failed",
+      "ignored": "Payment failed leaves payment in ready. No side effect is specified in this synthetic example."
+    },
+    {
+      "region": "payment",
+      "state": "ready",
+      "event": "refund",
+      "ignored": "Refund leaves payment in ready. No side effect is specified in this synthetic example."
+    },
+    {
+      "region": "payment",
+      "state": "ready",
+      "event": "duplicate_purchase",
+      "ignored": "Deduplicate using the original order and event IDs. This design decision needs backend verification."
+    },
+    {
+      "region": "payment",
+      "state": "ready",
+      "event": "late_or_repeated_webhook",
+      "ignored": "Deduplicate using the original order and event IDs. This design decision needs backend verification."
+    },
+    {
+      "region": "payment",
+      "state": "pending",
+      "event": "add_hours",
+      "ignored": "Add hours leaves payment in pending. No side effect is specified in this synthetic example."
+    },
+    {
+      "region": "payment",
+      "state": "pending",
+      "event": "refund",
+      "ignored": "Refund leaves payment in pending. No side effect is specified in this synthetic example."
+    },
+    {
+      "region": "payment",
+      "state": "pending",
+      "event": "duplicate_purchase",
+      "ignored": "Deduplicate using the original order and event IDs. This design decision needs backend verification."
+    },
+    {
+      "region": "payment",
+      "state": "pending",
+      "event": "late_or_repeated_webhook",
+      "ignored": "Deduplicate using the original order and event IDs. This design decision needs backend verification."
+    },
+    {
+      "region": "payment",
+      "state": "paid",
+      "event": "add_hours",
+      "ignored": "Add hours leaves payment in paid. No side effect is specified in this synthetic example."
+    },
+    {
+      "region": "payment",
+      "state": "paid",
+      "event": "payment_succeeded",
+      "ignored": "Payment succeeded leaves payment in paid. No side effect is specified in this synthetic example."
+    },
+    {
+      "region": "payment",
+      "state": "paid",
+      "event": "payment_failed",
+      "ignored": "Payment failed leaves payment in paid. No side effect is specified in this synthetic example."
+    },
+    {
+      "region": "payment",
+      "state": "paid",
+      "event": "duplicate_purchase",
+      "ignored": "Deduplicate using the original order and event IDs. This design decision needs backend verification."
+    },
+    {
+      "region": "payment",
+      "state": "paid",
+      "event": "late_or_repeated_webhook",
+      "ignored": "Deduplicate using the original order and event IDs. This design decision needs backend verification."
+    },
+    {
+      "region": "payment",
+      "state": "refunded",
+      "event": "add_hours",
+      "ignored": "Add hours leaves payment in refunded. No side effect is specified in this synthetic example."
+    },
+    {
+      "region": "payment",
+      "state": "refunded",
+      "event": "payment_succeeded",
+      "ignored": "Payment succeeded leaves payment in refunded. No side effect is specified in this synthetic example."
+    },
+    {
+      "region": "payment",
+      "state": "refunded",
+      "event": "payment_failed",
+      "ignored": "Payment failed leaves payment in refunded. No side effect is specified in this synthetic example."
+    },
+    {
+      "region": "payment",
+      "state": "refunded",
+      "event": "refund",
+      "ignored": "Refund leaves payment in refunded. No side effect is specified in this synthetic example."
+    },
+    {
+      "region": "payment",
+      "state": "refunded",
+      "event": "duplicate_purchase",
+      "ignored": "Deduplicate using the original order and event IDs. This design decision needs backend verification."
+    },
+    {
+      "region": "payment",
+      "state": "refunded",
+      "event": "late_or_repeated_webhook",
+      "ignored": "Deduplicate using the original order and event IDs. This design decision needs backend verification."
+    },
+    {
+      "region": "entitlement",
+      "state": "active",
+      "event": "add_hours",
+      "ignored": "Add hours leaves entitlement in active. No side effect is specified in this synthetic example."
+    },
+    {
+      "region": "entitlement",
+      "state": "active",
+      "event": "payment_failed",
+      "ignored": "Payment failed leaves entitlement in active. No side effect is specified in this synthetic example."
+    },
+    {
+      "region": "entitlement",
+      "state": "active",
+      "event": "refund",
+      "ignored": "Refund leaves entitlement in active. No side effect is specified in this synthetic example."
+    },
+    {
+      "region": "entitlement",
+      "state": "active",
+      "event": "duplicate_purchase",
+      "ignored": "Deduplicate using the original order and event IDs. This design decision needs backend verification."
+    },
+    {
+      "region": "entitlement",
+      "state": "active",
+      "event": "late_or_repeated_webhook",
+      "ignored": "Deduplicate using the original order and event IDs. This design decision needs backend verification."
+    },
+    {
+      "region": "entitlement",
+      "state": "increased",
+      "event": "add_hours",
+      "ignored": "Add hours leaves entitlement in increased. No side effect is specified in this synthetic example."
+    },
+    {
+      "region": "entitlement",
+      "state": "increased",
+      "event": "payment_succeeded",
+      "ignored": "Payment succeeded leaves entitlement in increased. No side effect is specified in this synthetic example."
+    },
+    {
+      "region": "entitlement",
+      "state": "increased",
+      "event": "payment_failed",
+      "ignored": "Payment failed leaves entitlement in increased. No side effect is specified in this synthetic example."
+    },
+    {
+      "region": "entitlement",
+      "state": "increased",
+      "event": "refund",
+      "absent": {
+        "owner": "Service operations",
+        "recovery": "Review consumed hours, adjust remaining entitlement and reconcile the service ledger manually."
+      }
+    },
+    {
+      "region": "entitlement",
+      "state": "increased",
+      "event": "duplicate_purchase",
+      "ignored": "Deduplicate using the original order and event IDs. This design decision needs backend verification."
+    },
+    {
+      "region": "entitlement",
+      "state": "increased",
+      "event": "late_or_repeated_webhook",
+      "ignored": "Deduplicate using the original order and event IDs. This design decision needs backend verification."
+    },
+    {
+      "region": "operations",
+      "state": "current",
+      "event": "add_hours",
+      "ignored": "Add hours leaves operations in current. No side effect is specified in this synthetic example."
+    },
+    {
+      "region": "operations",
+      "state": "current",
+      "event": "payment_failed",
+      "ignored": "Payment failed leaves operations in current. No side effect is specified in this synthetic example."
+    },
+    {
+      "region": "operations",
+      "state": "current",
+      "event": "refund",
+      "ignored": "Refund leaves operations in current. No side effect is specified in this synthetic example."
+    },
+    {
+      "region": "operations",
+      "state": "current",
+      "event": "duplicate_purchase",
+      "ignored": "Deduplicate using the original order and event IDs. This design decision needs backend verification."
+    },
+    {
+      "region": "operations",
+      "state": "current",
+      "event": "late_or_repeated_webhook",
+      "ignored": "Deduplicate using the original order and event IDs. This design decision needs backend verification."
+    },
+    {
+      "region": "operations",
+      "state": "updated",
+      "event": "add_hours",
+      "ignored": "Add hours leaves operations in updated. No side effect is specified in this synthetic example."
+    },
+    {
+      "region": "operations",
+      "state": "updated",
+      "event": "payment_succeeded",
+      "ignored": "Payment succeeded leaves operations in updated. No side effect is specified in this synthetic example."
+    },
+    {
+      "region": "operations",
+      "state": "updated",
+      "event": "payment_failed",
+      "ignored": "Payment failed leaves operations in updated. No side effect is specified in this synthetic example."
+    },
+    {
+      "region": "operations",
+      "state": "updated",
+      "event": "refund",
+      "absent": {
+        "owner": "Service operations",
+        "recovery": "Review consumed hours, adjust remaining entitlement and reconcile the service ledger manually."
+      }
+    },
+    {
+      "region": "operations",
+      "state": "updated",
+      "event": "duplicate_purchase",
+      "ignored": "Deduplicate using the original order and event IDs. This design decision needs backend verification."
+    },
+    {
+      "region": "operations",
+      "state": "updated",
+      "event": "late_or_repeated_webhook",
+      "ignored": "Deduplicate using the original order and event IDs. This design decision needs backend verification."
+    }
+  ]
+}

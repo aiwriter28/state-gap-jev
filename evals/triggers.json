@@ -1,0 +1,26 @@
+[
+  {
+    "query": "I have no API keys. I downloaded state-gap-jev and want to explore its built-in example with my coding agent. Help me understand the before and after results.",
+    "should_trigger": true
+  },
+  {
+    "query": "Our refund flow updates Stripe but sometimes leaves the customer with the old entitlement. Map the state and event cases across payment, account access and the ledger, including retries and recovery.",
+    "should_trigger": true
+  },
+  {
+    "query": "We have a workflow model and browser journey recordings. Build an evidence map that shows what is only planned, what passed, and what we never tested. Let me choose OpenRouter for Jev.",
+    "should_trigger": true
+  },
+  {
+    "query": "Please use Archify to draw a simple diagram of browser to API to database. I only need the picture, no workflow audit or browser testing.",
+    "should_trigger": false
+  },
+  {
+    "query": "Explain what a finite state machine is using a traffic light. I am learning programming and just want a short explanation, not a project or audit.",
+    "should_trigger": false
+  },
+  {
+    "query": "Please review this Python function for formatting and naming issues. No workflow modeling or live tests are needed.",
+    "should_trigger": false
+  }
+]

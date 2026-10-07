@@ -1,0 +1,368 @@
+{
+  "schemaVersion": 1,
+  "cells": [
+    {
+      "id": "payment.ready.add_hours",
+      "region": "payment",
+      "state": "ready",
+      "event": "add_hours",
+      "resolution": ""
+    },
+    {
+      "id": "payment.ready.payment_succeeded",
+      "region": "payment",
+      "state": "ready",
+      "event": "payment_succeeded",
+      "resolution": "A"
+    },
+    {
+      "id": "payment.ready.payment_failed",
+      "region": "payment",
+      "state": "ready",
+      "event": "payment_failed",
+      "resolution": "I"
+    },
+    {
+      "id": "payment.ready.refund",
+      "region": "payment",
+      "state": "ready",
+      "event": "refund",
+      "resolution": "I"
+    },
+    {
+      "id": "payment.ready.duplicate_purchase",
+      "region": "payment",
+      "state": "ready",
+      "event": "duplicate_purchase",
+      "resolution": "I"
+    },
+    {
+      "id": "payment.ready.late_or_repeated_webhook",
+      "region": "payment",
+      "state": "ready",
+      "event": "late_or_repeated_webhook",
+      "resolution": "I"
+    },
+    {
+      "id": "payment.pending.add_hours",
+      "region": "payment",
+      "state": "pending",
+      "event": "add_hours",
+      "resolution": "I"
+    },
+    {
+      "id": "payment.pending.payment_succeeded",
+      "region": "payment",
+      "state": "pending",
+      "event": "payment_succeeded",
+      "resolution": "W"
+    },
+    {
+      "id": "payment.pending.payment_failed",
+      "region": "payment",
+      "state": "pending",
+      "event": "payment_failed",
+      "resolution": "W"
+    },
+    {
+      "id": "payment.pending.refund",
+      "region": "payment",
+      "state": "pending",
+      "event": "refund",
+      "resolution": "I"
+    },
+    {
+      "id": "payment.pending.duplicate_purchase",
+      "region": "payment",
+      "state": "pending",
+      "event": "duplicate_purchase",
+      "resolution": "I"
+    },
+    {
+      "id": "payment.pending.late_or_repeated_webhook",
+      "region": "payment",
+      "state": "pending",
+      "event": "late_or_repeated_webhook",
+      "resolution": "I"
+    },
+    {
+      "id": "payment.paid.add_hours",
+      "region": "payment",
+      "state": "paid",
+      "event": "add_hours",
+      "resolution": "I"
+    },
+    {
+      "id": "payment.paid.payment_succeeded",
+      "region": "payment",
+      "state": "paid",
+      "event": "payment_succeeded",
+      "resolution": "I"
+    },
+    {
+      "id": "payment.paid.payment_failed",
+      "region": "payment",
+      "state": "paid",
+      "event": "payment_failed",
+      "resolution": "I"
+    },
+    {
+      "id": "payment.paid.refund",
+      "region": "payment",
+      "state": "paid",
+      "event": "refund",
+      "resolution": "W"
+    },
+    {
+      "id": "payment.paid.duplicate_purchase",
+      "region": "payment",
+      "state": "paid",
+      "event": "duplicate_purchase",
+      "resolution": "I"
+    },
+    {
+      "id": "payment.paid.late_or_repeated_webhook",
+      "region": "payment",
+      "state": "paid",
+      "event": "late_or_repeated_webhook",
+      "resolution": "I"
+    },
+    {
+      "id": "payment.refunded.add_hours",
+      "region": "payment",
+      "state": "refunded",
+      "event": "add_hours",
+      "resolution": "I"
+    },
+    {
+      "id": "payment.refunded.payment_succeeded",
+      "region": "payment",
+      "state": "refunded",
+      "event": "payment_succeeded",
+      "resolution": "I"
+    },
+    {
+      "id": "payment.refunded.payment_failed",
+      "region": "payment",
+      "state": "refunded",
+      "event": "payment_failed",
+      "resolution": "I"
+    },
+    {
+      "id": "payment.refunded.refund",
+      "region": "payment",
+      "state": "refunded",
+      "event": "refund",
+      "resolution": "I"
+    },
+    {
+      "id": "payment.refunded.duplicate_purchase",
+      "region": "payment",
+      "state": "refunded",
+      "event": "duplicate_purchase",
+      "resolution": "I"
+    },
+    {
+      "id": "payment.refunded.late_or_repeated_webhook",
+      "region": "payment",
+      "state": "refunded",
+      "event": "late_or_repeated_webhook",
+      "resolution": "I"
+    },
+    {
+      "id": "entitlement.active.add_hours",
+      "region": "entitlement",
+      "state": "active",
+      "event": "add_hours",
+      "resolution": "I"
+    },
+    {
+      "id": "entitlement.active.payment_succeeded",
+      "region": "entitlement",
+      "state": "active",
+      "event": "payment_succeeded",
+      "resolution": "W"
+    },
+    {
+      "id": "entitlement.active.payment_failed",
+      "region": "entitlement",
+      "state": "active",
+      "event": "payment_failed",
+      "resolution": "I"
+    },
+    {
+      "id": "entitlement.active.refund",
+      "region": "entitlement",
+      "state": "active",
+      "event": "refund",
+      "resolution": "I"
+    },
+    {
+      "id": "entitlement.active.duplicate_purchase",
+      "region": "entitlement",
+      "state": "active",
+      "event": "duplicate_purchase",
+      "resolution": "I"
+    },
+    {
+      "id": "entitlement.active.late_or_repeated_webhook",
+      "region": "entitlement",
+      "state": "active",
+      "event": "late_or_repeated_webhook",
+      "resolution": "I"
+    },
+    {
+      "id": "entitlement.increased.add_hours",
+      "region": "entitlement",
+      "state": "increased",
+      "event": "add_hours",
+      "resolution": "I"
+    },
+    {
+      "id": "entitlement.increased.payment_succeeded",
+      "region": "entitlement",
+      "state": "increased",
+      "event": "payment_succeeded",
+      "resolution": "I"
+    },
+    {
+      "id": "entitlement.increased.payment_failed",
+      "region": "entitlement",
+      "state": "increased",
+      "event": "payment_failed",
+      "resolution": "I"
+    },
+    {
+      "id": "entitlement.increased.refund",
+      "region": "entitlement",
+      "state": "increased",
+      "event": "refund",
+      "resolution": "A"
+    },
+    {
+      "id": "entitlement.increased.duplicate_purchase",
+      "region": "entitlement",
+      "state": "increased",
+      "event": "duplicate_purchase",
+      "resolution": "I"
+    },
+    {
+      "id": "entitlement.increased.late_or_repeated_webhook",
+      "region": "entitlement",
+      "state": "increased",
+      "event": "late_or_repeated_webhook",
+      "resolution": "I"
+    },
+    {
+      "id": "operations.current.add_hours",
+      "region": "operations",
+      "state": "current",
+      "event": "add_hours",
+      "resolution": "I"
+    },
+    {
+      "id": "operations.current.payment_succeeded",
+      "region": "operations",
+      "state": "current",
+      "event": "payment_succeeded",
+      "resolution": "W"
+    },
+    {
+      "id": "operations.current.payment_failed",
+      "region": "operations",
+      "state": "current",
+      "event": "payment_failed",
+      "resolution": "I"
+    },
+    {
+      "id": "operations.current.refund",
+      "region": "operations",
+      "state": "current",
+      "event": "refund",
+      "resolution": "I"
+    },
+    {
+      "id": "operations.current.duplicate_purchase",
+      "region": "operations",
+      "state": "current",
+      "event": "duplicate_purchase",
+      "resolution": "I"
+    },
+    {
+      "id": "operations.current.late_or_repeated_webhook",
+      "region": "operations",
+      "state": "current",
+      "event": "late_or_repeated_webhook",
+      "resolution": "I"
+    },
+    {
+      "id": "operations.updated.add_hours",
+      "region": "operations",
+      "state": "updated",
+      "event": "add_hours",
+      "resolution": "I"
+    },
+    {
+      "id": "operations.updated.payment_succeeded",
+      "region": "operations",
+      "state": "updated",
+      "event": "payment_succeeded",
+      "resolution": "I"
+    },
+    {
+      "id": "operations.updated.payment_failed",
+      "region": "operations",
+      "state": "updated",
+      "event": "payment_failed",
+      "resolution": "I"
+    },
+    {
+      "id": "operations.updated.refund",
+      "region": "operations",
+      "state": "updated",
+      "event": "refund",
+      "resolution": "A"
+    },
+    {
+      "id": "operations.updated.duplicate_purchase",
+      "region": "operations",
+      "state": "updated",
+      "event": "duplicate_purchase",
+      "resolution": "I"
+    },
+    {
+      "id": "operations.updated.late_or_repeated_webhook",
+      "region": "operations",
+      "state": "updated",
+      "event": "late_or_repeated_webhook",
+      "resolution": "I"
+    }
+  ],
+  "gaps": [
+    {
+      "region": "payment",
+      "state": "ready",
+      "event": "add_hours"
+    }
+  ],
+  "unreachable": [
+    {
+      "region": "payment",
+      "state": "pending"
+    },
+    {
+      "region": "payment",
+      "state": "paid"
+    },
+    {
+      "region": "payment",
+      "state": "refunded"
+    }
+  ],
+  "deadEnds": [
+    {
+      "region": "payment",
+      "state": "ready"
+    }
+  ]
+}

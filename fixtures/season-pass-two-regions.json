@@ -1,0 +1,67 @@
+{
+  "systems": [
+    { "name": "payment", "region": "fulfillment" },
+    { "name": "fulfillment", "region": "fulfillment" },
+    { "name": "marketing groups", "region": "marketing" },
+    { "name": "campaign sends", "region": "marketing" },
+    { "name": "calendar", "region": "fulfillment" },
+    { "name": "reminder sequences", "region": "marketing" },
+    { "name": "file sharing", "region": "fulfillment" },
+    { "name": "CRM", "none": true, "reason": "Run A names no CRM." },
+    { "name": "workflow engine", "region": "fulfillment" }
+  ],
+  "events": [
+    { "id": "full_series_checkout_completed", "name": "Full series checkout completed" },
+    { "id": "paid_parent_fulfilled", "name": "Paid parent fulfilled" },
+    { "id": "sales_campaign_sent", "name": "Sales campaign sent" },
+    { "id": "unsubscribe_clicked", "name": "Unsubscribe clicked" },
+    { "id": "cohort_closed", "name": "Cohort closed" }
+  ],
+  "regions": [
+    {
+      "id": "fulfillment",
+      "name": "Fulfillment",
+      "states": [
+        { "id": "visitor", "name": "Visitor", "isInitial": true, "isFinal": false },
+        { "id": "paid", "name": "Paid", "isInitial": false, "isFinal": false },
+        { "id": "closed", "name": "Closed", "isInitial": false, "isFinal": true }
+      ],
+      "transitions": [
+        { "from": "visitor", "event": "full_series_checkout_completed", "to": "paid" },
+        { "from": "paid", "event": "paid_parent_fulfilled", "to": "paid" },
+        { "from": "paid", "event": "cohort_closed", "to": "closed" }
+      ]
+    },
+    {
+      "id": "marketing",
+      "name": "Marketing",
+      "states": [
+        { "id": "eligible", "name": "Eligible", "isInitial": true, "isFinal": false },
+        { "id": "subscribed", "name": "Subscribed", "isInitial": false, "isFinal": false },
+        { "id": "unsubscribed", "name": "Unsubscribed", "isInitial": false, "isFinal": true }
+      ],
+      "transitions": [
+        { "from": "eligible", "event": "full_series_checkout_completed", "to": "subscribed" },
+        { "from": "subscribed", "event": "sales_campaign_sent", "to": "subscribed" },
+        { "from": "subscribed", "event": "unsubscribe_clicked", "to": "unsubscribed" }
+      ]
+    }
+  ],
+  "decisions": [
+    {
+      "region": "fulfillment",
+      "state": "paid",
+      "event": "sales_campaign_sent",
+      "ignored": "Campaign sends belong to the separate marketing region."
+    },
+    {
+      "region": "fulfillment",
+      "state": "paid",
+      "event": "unsubscribe_clicked",
+      "absent": {
+        "owner": "Marketing owner",
+        "recovery": "Review the paid participant manually before the next campaign."
+      }
+    }
+  ]
+}

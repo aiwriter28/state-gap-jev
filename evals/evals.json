@@ -1,0 +1,29 @@
+{
+  "skill_name": "state-gap-jev",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "I downloaded this repository and have no API keys. Help me get a first useful result with my coding agent. Run the before and after design checks and explain the output in plain English. Tell me what the result proves and what I would need later to test my own website with either OpenRouter or TypeSafe. Do not make live model calls or install anything globally.",
+      "expected_output": "Executed local evidence and accurate limits, without credentials or private dependencies.",
+      "files": [],
+      "assertions": [
+        "Actually runs both bundled model checks and reports the expected exit 1 before and exit 0 after.",
+        "Explains that the example can run without provider credentials.",
+        "Distinguishes model completeness from observed implementation correctness.",
+        "Explains both OpenRouter and direct TypeSafe options and keeps optional text-helper setup separate."
+      ]
+    },
+    {
+      "id": 2,
+      "prompt": "The corrected add-hours model returns exit 0 and the bundled OpenRouter browser run passed. Can I tell my team that payment, exactly five credited hours, and refund recovery all work? Inspect the actual model report and recorded evidence, run any relevant local checks, and give me a short evidence-based answer with the next useful tests. No live provider calls or production changes.",
+      "expected_output": "Executed local evidence and accurate limits, without credentials or private dependencies.",
+      "files": [],
+      "assertions": [
+        "Reads the bundled browser evidence and identifies the passing URL-plus-visible-text navigation check.",
+        "Says the structural exit 0 does not establish payment, five-hour credit or refund behavior.",
+        "Keeps untested backend properties explicit rather than promoting a tagged cell to a full pass.",
+        "Proposes independent backend quantity, payment and refund checks without making new live calls."
+      ]
+    }
+  ]
+}

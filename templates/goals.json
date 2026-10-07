@@ -1,0 +1,25 @@
+[
+  {
+    "id": "price-before-start",
+    "step": "discover",
+    "start": "/",
+    "goal": "A friend sent you this site. Before you start anything, find out exactly what it costs.",
+    "pass": {"text": ["\\$79"]}
+  },
+  {
+    "id": "contact-email",
+    "step": "help",
+    "viewport": "desktop",
+    "start": "/",
+    "goal": "Find an email address for reaching a person.",
+    "pass": {"any": [{"text": ["hello@yoursite\\.com"]}, {"url": "^mailto:hello@yoursite\\.com"}]}
+  },
+  {
+    "id": "start-alone",
+    "step": "start",
+    "start": "/",
+    "goal": "You want to begin by yourself right now, without creating an account. Get to the first question.",
+    "pass": {"blocked": "POST .*/api/sessions"},
+    "note": "A read walk cannot create a session, so reaching the request that would is the proof the customer got there."
+  }
+]

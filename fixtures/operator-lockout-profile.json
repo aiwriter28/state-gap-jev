@@ -1,0 +1,95 @@
+{
+  "profile": {
+    "activities": ["content script", "service worker", "storage", "voice"],
+    "seeds": [
+      { "id": "page_reload", "name": "Page reload" },
+      { "id": "second_tab", "name": "Second tab" },
+      { "id": "tab_close", "name": "Tab close" },
+      { "id": "sw_restart", "name": "Service worker restart" },
+      { "id": "extension_update", "name": "Extension update" },
+      { "id": "browser_restart", "name": "Browser restart" },
+      { "id": "session_roll", "name": "Session roll" },
+      { "id": "speech_failed", "name": "Speech failed" },
+      { "id": "speech_hung", "name": "Speech hung" },
+      { "id": "offline", "name": "Offline" }
+    ]
+  },
+  "systems": [
+    { "name": "content script", "region": "lockout" },
+    { "name": "service worker", "none": true, "reason": "The fixture region runs in the content script." },
+    { "name": "storage", "region": "lockout" },
+    { "name": "voice", "region": "lockout" }
+  ],
+  "events": [
+    { "id": "loss_limit_hit", "name": "Loss limit hit" },
+    { "id": "lockout_expired", "name": "Lockout expired" },
+    { "id": "breathing_done", "name": "Breathing done" }
+  ],
+  "regions": [
+    {
+      "id": "lockout",
+      "name": "Lockout",
+      "states": [
+        {
+          "id": "trading", "name": "Trading", "isInitial": true, "isFinal": false,
+          "persistence": {
+            "area": "session",
+            "survives": ["page_reload", "second_tab", "tab_close", "sw_restart", "speech_failed",
+              "speech_hung", "offline"]
+          }
+        },
+        {
+          "id": "locked", "name": "Locked", "isInitial": false, "isFinal": false,
+          "persistence": {
+            "area": "local",
+            "survives": ["page_reload", "second_tab", "tab_close", "sw_restart", "extension_update",
+              "browser_restart", "speech_failed", "speech_hung", "offline"]
+          }
+        },
+        {
+          "id": "pol_breathing", "name": "Breathing", "isInitial": false, "isFinal": false,
+          "persistence": { "area": "memory", "survives": ["second_tab", "sw_restart", "offline"] }
+        }
+      ],
+      "transitions": [
+        { "from": "trading", "event": "loss_limit_hit", "to": "locked",
+          "evidence": "example/tilt-engine.ts:40-58" },
+        { "from": "trading", "event": "session_roll", "to": "trading",
+          "evidence": "example/session.ts:12-20" },
+        { "from": "locked", "event": "lockout_expired", "to": "pol_breathing" },
+        { "from": "locked", "event": "page_reload", "to": "locked",
+          "evidence": "example/content-init.ts:30-44" },
+        { "from": "pol_breathing", "event": "breathing_done", "to": "trading" },
+        { "from": "pol_breathing", "event": "speech_failed", "to": "pol_breathing",
+          "evidence": "example/breathing.ts:88-97" }
+      ]
+    }
+  ],
+  "decisions": [
+    { "region": "lockout", "state": "trading", "event": "lockout_expired",
+      "ignored": "No lockout is running." },
+    { "region": "lockout", "state": "trading", "event": "breathing_done",
+      "ignored": "No breathing exercise is running." },
+    { "region": "lockout", "state": "trading", "event": "extension_update",
+      "ignored": "Counters restart at zero after an update.", "evidence": "example/session.ts:5" },
+    { "region": "lockout", "state": "trading", "event": "browser_restart",
+      "ignored": "Counters restart at zero after a browser restart." },
+    { "region": "lockout", "state": "locked", "event": "loss_limit_hit",
+      "ignored": "Already locked." },
+    { "region": "lockout", "state": "locked", "event": "breathing_done",
+      "ignored": "Breathing has not started." },
+    { "region": "lockout", "state": "pol_breathing", "event": "loss_limit_hit",
+      "ignored": "Trading is blocked during breathing." },
+    { "region": "lockout", "state": "pol_breathing", "event": "lockout_expired",
+      "ignored": "The lockout already expired." },
+    { "region": "lockout", "state": "pol_breathing", "event": "extension_update",
+      "absent": { "owner": "Extension owner", "recovery": "Restart breathing from local storage." } },
+    { "region": "lockout", "state": "pol_breathing", "event": "browser_restart",
+      "absent": { "owner": "Extension owner", "recovery": "Restart breathing from local storage." } },
+    { "region": "lockout", "state": "pol_breathing", "event": "session_roll",
+      "ignored": "Breathing finishes before the new session starts." },
+    { "region": "lockout", "state": "pol_breathing", "event": "speech_hung",
+      "absent": { "owner": "Voice owner", "recovery": "Add a speech watchdog." },
+      "evidence": "example/breathing.ts:60" }
+  ]
+}
