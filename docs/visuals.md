@@ -1,8 +1,35 @@
 # Read the map, inspect the evidence
 
-Archify renders the diagrams. State Gap supplies deterministic cells, and browser runs supply observations. The results page connects those records without claiming that drawing a path tested it.
+[Archify](https://github.com/tt-a1i/archify) is the diagram tool used to create the interactive workflow maps in this repository. A map gives you a way to follow the process and discuss it with a client or teammate. The supplied HTML maps are already generated, so viewing them requires only a browser.
 
-Open the supplied HTML locally to use guided views, search, focus, route exploration, theme switching and exports. GitHub's source viewer cannot run the interactive HTML. The README images work directly on GitHub.
+State Gap supplies the workflow decisions. Browser runs supply observations. The results page connects those records and shows the precise checks behind an outcome. Keep those roles in mind: a drawn connection describes the workflow, while a recorded test describes what happened in a particular run.
+
+## Open the included example
+
+1. Clone the repository, or choose **Code > Download ZIP** on GitHub and extract it.
+2. Open `visuals/before-after.html` from the local folder in your browser. Ask your agent to open it if you are unsure where the files are.
+3. Follow the existing-customer path. The before view shows the missing add-hours path; the after view shows the proposed design.
+4. Open `visuals/observed-results.html` to see how the recorded browser test relates to that design.
+5. Open `examples/add-hours/typesafe-after.html` or `openrouter-after.html`. Expand the passing goal to read its checks, then follow the links to its record and screenshot.
+
+Keep the extracted folder together. Results pages use relative links to records, frames and maps, so moving one page by itself can break those links. GitHub displays HTML source instead of running it. The PNG images in the README work directly on GitHub.
+
+## Use the map and results controls
+
+The supplied maps include guided views, search, focus, route exploration, light/dark themes and exports. Start with the guided view to understand the main path. Select a step to inspect its details, or search for a system such as payment. Route exploration helps you follow the connections authored in the map. Export a static image when you need a picture for a client discussion, or share the HTML for interaction.
+
+The results page has status filters and expandable goal checks. For each recorded goal, read what the check required before interpreting its status:
+
+| Status | Meaning |
+| --- | --- |
+| Pass | The recorded journey met its specified checks |
+| Flaky | The first attempt failed and the retry passed; both attempts remain visible |
+| Fail | The journey did not meet its checks |
+| Error | A browser, provider or execution problem prevented a normal result; inspect the record |
+| Skip | The goal was skipped, with the recorded reason |
+| Untested | No linked observation exists for that model cell |
+
+The corrected add-hours demo passes because it reaches the expected checkout URL and sees the offer text. Payment and account updates need separate checks. A goal that is only assigned to a model cell represents planned testing until a run supplies an observation.
 
 ## Generate results for your workflow
 
