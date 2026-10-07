@@ -13,6 +13,7 @@ The two-stage SkillSpector/Cisco scan was run on the original components and the
 | Inline script injection | The flagged onclick is a synthetic browser overlay regression fixture |
 | Dynamic execution plus subprocess | A project hook loader, cleanup dry-run and Git identity commands; hooks require review |
 | Environment access and HTTP imports | Named credential configuration and documented provider/loopback requests |
+| Undeclared network usage | The current Codex validator rejects the top-level `compatibility` field expected by this scanner rule. Network access to the chosen Jev provider is declared in the skill body and setup guide. |
 | Embedded runtime/font and report markers | Bundled Archify code and report formatting; source and upstream notices retained |
 
 No security scanner rules were suppressed or code obfuscated to manufacture a pass. Repeat your own required review on the exact version you install. Scanner findings are evidence to inspect, not proof that a package is safe or unsafe on their own. The recorded exception applies to the reviewed source; a new behavior or target requires a fresh review.

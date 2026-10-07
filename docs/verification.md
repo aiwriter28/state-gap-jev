@@ -1,5 +1,13 @@
 # Verification record
 
+## October 8, 2026 fresh GitHub sandbox retest
+
+A fresh clone of GitHub commit `65d4de79beb148e0064fda3f89a8963155a6be88` was tested with a separate uv cache, Chromium installation and local synthetic server. The credential-free before and after checks exited 1 and 0 respectively, and their output matched the shipped reports byte for byte. The planned-cell command ran without provider keys. The clean clone passed 18 Node tests and 123 Python tests with Playwright.
+
+Both TypeSafe and OpenRouter synthetic connection probes returned the expected Jev decision and reported usage. On each provider, the broken browser fixture failed on both preserved attempts (six Jev calls), and the corrected fixture reached the add-hours checkout in one action (one Jev call). The four journeys spent $0.00092736 in reported Jev usage combined. Run model hashes, provider identities, screenshots, retry records and absence of provider key values in the saved evidence were checked. Four generated results pages were opened in Chromium; their filters, expanded checks, screenshot links and the interactive map link worked. This verifies navigation on a local synthetic site, not payment, entitlement, mail or a customer deployment.
+
+The current Codex skill validator rejected the `compatibility` frontmatter key in the published revision. The key was removed and its network requirement stated in the skill body. Validation of this revised package now passes. The two-stage security scan reports the documented HIGH and CRITICAL patterns plus a MEDIUM undeclared-network finding because its rule expects the unsupported header field. See [security](security.md). This is not a clean automated security pass, and no global skill installation was performed in this retest.
+
 October 7, 2026. Verification for the initial public release.
 
 ## Executed checks
