@@ -1,0 +1,8 @@
+{
+  "name": "state-gap-jev",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "scripts": {"test": "node --test scripts/*.test.mjs", "example:before": "node scripts/state-gap.mjs examples/add-hours/before.json", "example:after": "node scripts/state-gap.mjs examples/add-hours/after.json"},
+  "engines": {"node": ">=22"}
+}
