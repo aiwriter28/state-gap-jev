@@ -10,6 +10,14 @@ Install the browser once:
 uv run --python 3.12 --with playwright==1.63.0 playwright install chromium
 ```
 
+Before a billable provider probe, confirm that this host can actually launch the installed browser:
+
+```sh
+uv run --python 3.12 --with playwright==1.63.0 python -c "from playwright.sync_api import sync_playwright; p = sync_playwright().start(); b = p.chromium.launch(headless=True); b.close(); p.stop()"
+```
+
+An installed browser can still fail to launch under a host process sandbox. For example, macOS may deny Chromium's Mach port registration. Treat that as an environment error, adjust the host's browser permission or use another isolated host, and rerun this check before calling Jev. Keep the failed attempt; do not count its journey cells as tested.
+
 Start the synthetic site in one terminal:
 
 ```sh

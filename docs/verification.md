@@ -1,5 +1,13 @@
 # Verification record
 
+## October 8, 2026 installed Codex skill walkthrough
+
+A fresh clone of GitHub commit `6fd809ff159f412e7a331e24d4dbd98266eec4c1` was installed through the official Codex skill installer into an isolated temporary `CODEX_HOME`. All 145 installed files matched the clone byte for byte, the Codex skill validator passed, and the installed skill appeared once in the host's prompt catalog. The reviewed post-install two-stage security scan reported the same nine findings (two CRITICAL, two HIGH, five MEDIUM) as the source scan; see [security](security.md). This was an isolated test installation, not a change to the user's global skill roots.
+
+A new Codex session used the installed skill to guide credential-free onboarding. It ran the before and after model checks with expected exit codes 1 and 0 and distinguished supplied design visuals from executed browser evidence. A second session prepared Python 3.12.11 and Playwright 1.63.0, installed Chromium, passed a live TypeSafe probe with `jev-1.13.0`, and attempted both browser journeys. Those attempts were execution errors: the host's macOS process sandbox denied Chromium Mach port registration. No browser cells were counted as tested from those attempts.
+
+The same session resumed with a host setting that allowed Chromium. Against only the local synthetic demo, the broken journey failed on both retained attempts (six Jev calls, $0.000399756), while the corrected journey passed after one click to `/after/checkout.html` (one call, $0.000063924). The generated results pages rendered in Chromium in light and dark themes; status filters, evidence links, model hashes, records and all three final screenshots were checked. Forty generated text artifacts contained no provider key value, the package clone stayed clean, and the local server was stopped. One cell was observed in each journey and 47 modeled cells remained untested. Payment, entitlement, mail and production behavior were outside this local navigation fixture. The browser launch preflight in [journeys](journeys.md) was added from this failure.
+
 ## October 8, 2026 fresh GitHub sandbox retest
 
 A fresh clone of GitHub commit `65d4de79beb148e0064fda3f89a8963155a6be88` was tested with a separate uv cache, Chromium installation and local synthetic server. The credential-free before and after checks exited 1 and 0 respectively, and their output matched the shipped reports byte for byte. The planned-cell command ran without provider keys. The clean clone passed 18 Node tests and 123 Python tests with Playwright.

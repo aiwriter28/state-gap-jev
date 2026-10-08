@@ -77,7 +77,7 @@ Use an existing account when you have one. Otherwise, the agent can point you to
 
 Store the key in your environment or a local ignored secret store. An API key gives the runner access to your provider account and billable calls, so keep its value out of chat, models, goals and screenshots. The agent usually needs to check only whether the required key is present.
 
-Follow the [provider guide](providers.md) for the small billable connection check. Then use the [journey guide](journeys.md) to run the local browser example before targeting your own site. The example only navigates to checkout. Journeys that type free-form text into forms also need a separate text-generation service, explained in the provider guide.
+Run the [browser launch check](journeys.md#run-the-example) before the small billable connection check in the [provider guide](providers.md). Then use the journey guide to run the local browser example before targeting your own site. The example only navigates to checkout. Journeys that type free-form text into forms also need a separate text-generation service, explained in the provider guide.
 
 ## Step 7: Choose the target and inspect the evidence
 
